@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{EC36A004-E138-4E6A-BC73-021353BAED5A}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <AssemblyName>Niflib</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="SharpDX">
+      <HintPath>packages\SharpDX.2.6.3\Bin\DirectX11_2-net40\SharpDX.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Niflib\ATextureRenderData.cs" />
+    <Compile Include="Niflib\BaseKey.cs" />
+    <Compile Include="Niflib\ByteKey.cs" />
+    <Compile Include="Niflib\ChannelData.cs" />
+    <Compile Include="Niflib\Color4Key.cs" />
+    <Compile Include="Niflib\eAlphaFormat.cs" />
+    <Compile Include="Niflib\eBillboardMode.cs" />
+    <Compile Include="Niflib\eChannelConvention.cs" />
+    <Compile Include="Niflib\eChannelType.cs" />
+    <Compile Include="Niflib\eCoordGenType.cs" />
+    <Compile Include="Niflib\eDecayType.cs" />
+    <Compile Include="Niflib\eEffectType.cs" />
+    <Compile Include="Niflib\eFaceDrawMode.cs" />
+    <Compile Include="Niflib\eKeyType.cs" />
+    <Compile Include="Niflib\eMipMapFormat.cs" />
+    <Compile Include="Niflib\eNifVersion.cs" />
+    <Compile Include="Niflib\ePixelFormat.cs" />
+    <Compile Include="Niflib\ePixelLayout.cs" />
+    <Compile Include="Niflib\eStencilAction.cs" />
+    <Compile Include="Niflib\eStencilCompareMode.cs" />
+    <Compile Include="Niflib\eSymmetryType.cs" />
+    <Compile Include="Niflib\eTargetColor.cs" />
+    <Compile Include="Niflib\eTexClampMode.cs" />
+    <Compile Include="Niflib\eTexFilterMode.cs" />
+    <Compile Include="Niflib\eTexTransform.cs" />
+    <Compile Include="Niflib\eTexType.cs" />
+    <Compile Include="Niflib\FloatKey.cs" />
+    <Compile Include="Niflib\KeyGroup.cs" />
+    <Compile Include="Niflib\LODRange.cs" />
+    <Compile Include="Niflib\MipMap.cs" />
+    <Compile Include="Niflib\Morph.cs" />
+    <Compile Include="Niflib\NiAlphaController.cs" />
+    <Compile Include="Niflib\NiAlphaProperty.cs" />
+    <Compile Include="Niflib\NiAmbientLight.cs" />
+    <Compile Include="Niflib\NiAutoNormalParticles.cs" />
+    <Compile Include="Niflib\NiAutoNormalParticlesData.cs" />
+    <Compile Include="Niflib\NiAVObject.cs" />
+    <Compile Include="Niflib\NiBillboardNode.cs" />
+    <Compile Include="Niflib\NiBinaryExtraData.cs" />
+    <Compile Include="Niflib\NiBooleanExtraData.cs" />
+    <Compile Include="Niflib\NiBoolInterpController.cs" />
+    <Compile Include="Niflib\NiCamera.cs" />
+    <Compile Include="Niflib\NiCollisionObject.cs" />
+    <Compile Include="Niflib\NiColorData.cs" />
+    <Compile Include="Niflib\NiColorExtraData.cs" />
+    <Compile Include="Niflib\NiDirectionalLight.cs" />
+    <Compile Include="Niflib\NiDitherProperty.cs" />
+    <Compile Include="Niflib\NiDynamicEffect.cs" />
+    <Compile Include="Niflib\NiExtraData.cs" />
+    <Compile Include="Niflib\NiFile.cs" />
+    <Compile Include="Niflib\NiFloatData.cs" />
+    <Compile Include="Niflib\NiFloatExtraData.cs" />
+    <Compile Include="Niflib\NiFloatInterpController.cs" />
+    <Compile Include="Niflib\NiFogProperty.cs" />
+    <Compile Include="Niflib\NiFooter.cs" />
+    <Compile Include="Niflib\NiGeometry.cs" />
+    <Compile Include="Niflib\NiGeometryData.cs" />
+    <Compile Include="Niflib\NiGeomMorpherController.cs" />
+    <Compile Include="Niflib\NiGravity.cs" />
+    <Compile Include="Niflib\NiHeader.cs" />
+    <Compile Include="Niflib\NiIntegerExtraData.cs" />
+    <Compile Include="Niflib\NiIntegersExtraData.cs" />
+    <Compile Include="Niflib\NiInterpController.cs" />
+    <Compile Include="Niflib\NiInterpolator.cs" />
+    <Compile Include="Niflib\NiKeyframeController.cs" />
+    <Compile Include="Niflib\NiKeyframeData.cs" />
+    <Compile Include="Niflib\NiLight.cs" />
+    <Compile Include="Niflib\NiLightColorController.cs" />
+    <Compile Include="Niflib\NiLODData.cs" />
+    <Compile Include="Niflib\NiLODNode.cs" />
+    <Compile Include="Niflib\NiLookAtController.cs" />
+    <Compile Include="Niflib\NiMaterialColorController.cs" />
+    <Compile Include="Niflib\NiMaterialProperty.cs" />
+    <Compile Include="Niflib\NiMorphData.cs" />
+    <Compile Include="Niflib\NiNode.cs" />
+    <Compile Include="Niflib\NiObject.cs" />
+    <Compile Include="Niflib\NiObjectNET.cs" />
+    <Compile Include="Niflib\NiPalette.cs" />
+    <Compile Include="Niflib\NiParticleBomb.cs" />
+    <Compile Include="Niflib\NiParticleColorModifier.cs" />
+    <Compile Include="Niflib\NiParticleGrowFade.cs" />
+    <Compile Include="Niflib\NiParticleMeshes.cs" />
+    <Compile Include="Niflib\NiParticleMeshesData.cs" />
+    <Compile Include="Niflib\NiParticleMeshModifier.cs" />
+    <Compile Include="Niflib\NiParticleModifier.cs" />
+    <Compile Include="Niflib\NiParticleRotation.cs" />
+    <Compile Include="Niflib\NiParticles.cs" />
+    <Compile Include="Niflib\NiParticlesData.cs" />
+    <Compile Include="Niflib\NiParticleSystemController.cs" />
+    <Compile Include="Niflib\NiPathController.cs" />
+    <Compile Include="Niflib\NiPixelData.cs" />
+    <Compile Include="Niflib\NiPlanarCollider.cs" />
+    <Compile Include="Niflib\NiPoint3InterpController.cs" />
+    <Compile Include="Niflib\NiPointLight.cs" />
+    <Compile Include="Niflib\NiPosData.cs" />
+    <Compile Include="Niflib\NiProperty.cs" />
+    <Compile Include="Niflib\NiRangeLODData.cs" />
+    <Compile Include="Niflib\NiRef.cs" />
+    <Compile Include="Niflib\NiRotatingParticles.cs" />
+    <Compile Include="Niflib\NiRotatingParticlesData.cs" />
+    <Compile Include="Niflib\NiScreenLODData.cs" />
+    <Compile Include="Niflib\NiSingleInterpController.cs" />
+    <Compile Include="Niflib\NiSkinData.cs" />
+    <Compile Include="Niflib\NiSkinInstance.cs" />
+    <Compile Include="Niflib\NiSkinPartition.cs" />
+    <Compile Include="Niflib\NiSourceTexture.cs" />
+    <Compile Include="Niflib\NiSpecularProperty.cs" />
+    <Compile Include="Niflib\NiSphericalCollider.cs" />
+    <Compile Include="Niflib\NiSpotLight.cs" />
+    <Compile Include="Niflib\NiStencilProperty.cs" />
+    <Compile Include="Niflib\NiString.cs" />
+    <Compile Include="Niflib\NiStringExtraData.cs" />
+    <Compile Include="Niflib\NiStringsExtraData.cs" />
+    <Compile Include="Niflib\NiSwitchNode.cs" />
+    <Compile Include="Niflib\NiTextKeyExtraData.cs" />
+    <Compile Include="Niflib\NiTexture.cs" />
+    <Compile Include="Niflib\NiTextureEffect.cs" />
+    <Compile Include="Niflib\NiTextureTransformController.cs" />
+    <Compile Include="Niflib\NiTexturingProperty.cs" />
+    <Compile Include="Niflib\NiTimeController.cs" />
+    <Compile Include="Niflib\NiTriBasedGeomData.cs" />
+    <Compile Include="Niflib\NiTriBasedGeometry.cs" />
+    <Compile Include="Niflib\NiTriShape.cs" />
+    <Compile Include="Niflib\NiTriShapeData.cs" />
+    <Compile Include="Niflib\NiTriStrips.cs" />
+    <Compile Include="Niflib\NiTriStripsData.cs" />
+    <Compile Include="Niflib\NiUVController.cs" />
+    <Compile Include="Niflib\NiUVData.cs" />
+    <Compile Include="Niflib\NiVectorExtraData.cs" />
+    <Compile Include="Niflib\NiVertexColorProperty.cs" />
+    <Compile Include="Niflib\NiVisController.cs" />
+    <Compile Include="Niflib\NiVisData.cs" />
+    <Compile Include="Niflib\NiWireframeProperty.cs" />
+    <Compile Include="Niflib\NiZBufferProperty.cs" />
+    <Compile Include="Niflib\Particle.cs" />
+    <Compile Include="Niflib\QuatKey.cs" />
+    <Compile Include="Niflib\ReaderExtensions.cs" />
+    <Compile Include="Niflib\SkinData.cs" />
+    <Compile Include="Niflib\SkinPartition.cs" />
+    <Compile Include="Niflib\SkinPartitionUnkownItem1.cs" />
+    <Compile Include="Niflib\SkinTransform.cs" />
+    <Compile Include="Niflib\SkinWeight.cs" />
+    <Compile Include="Niflib\StringKey.cs" />
+    <Compile Include="Niflib\TexDesc.cs" />
+    <Compile Include="Niflib\Triangle.cs" />
+    <Compile Include="Niflib\VecKey.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
