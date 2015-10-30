@@ -16,21 +16,19 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-#if OpenTK
-using OpenTK;
-#elif SharpDX
-using SharpDX;
-#elif MonoGame
-using Microsoft.Xna.Framework;
-#endif
-using System;
-using System.IO;
 
-/// <summary>
-/// The Niflib namespace.
-/// </summary>
 namespace Niflib
 {
+	#if OpenTK
+	using OpenTK;
+	#elif SharpDX
+	using SharpDX;
+	#elif MonoGame
+	using Microsoft.Xna.Framework;
+	#endif
+	using System;
+	using System.IO;
+
     /// <summary>
     /// Class NiLODNode.
     /// </summary>
@@ -52,7 +50,7 @@ namespace Niflib
         public NiRef<NiLODData> LODLevelData;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="NiSwitchNode" /> class.
+        /// Initializes a new instance of the <see cref="NiLODNode" /> class.
         /// </summary>
         /// <param name="file">The file.</param>
         /// <param name="reader">The reader.</param>

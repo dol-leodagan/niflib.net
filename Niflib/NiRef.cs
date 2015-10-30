@@ -16,18 +16,16 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-using System;
-using System.IO;
 
-/// <summary>
-/// The Niflib namespace.
-/// </summary>
 namespace Niflib
 {
+	using System;
+	using System.IO;
+
     /// <summary>
     /// Class NiRef.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">NiObject</typeparam>
     public class NiRef<T> where T : NiObject
 	{
         /// <summary>

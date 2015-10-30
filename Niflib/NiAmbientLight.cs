@@ -16,21 +16,19 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-using System;
-using System.IO;
 
-/// <summary>
-/// The Niflib namespace.
-/// </summary>
 namespace Niflib
 {
+	using System;
+	using System.IO;
+
     /// <summary>
     /// Class NiAmbientLight.
     /// </summary>
     public class NiAmbientLight : NiLight
 	{
         /// <summary>
-        /// Initializes a new instance of the <see cref="NiLight" /> class.
+        /// Initializes a new instance of the <see cref="NiAmbientLight" /> class.
         /// </summary>
         /// <param name="file">The file.</param>
         /// <param name="reader">The reader.</param>

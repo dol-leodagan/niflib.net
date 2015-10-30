@@ -16,22 +16,20 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-#if OpenTK
-using OpenTK.Graphics;
-using Color3 = OpenTK.Graphics.Color4;
-#elif SharpDX
-using SharpDX;
-#elif MonoGame
-using Color3 = Microsoft.Xna.Framework.Color;
-#endif
-using System;
-using System.IO;
 
-/// <summary>
-/// The Niflib namespace.
-/// </summary>
 namespace Niflib
 {
+	#if OpenTK
+	using OpenTK.Graphics;
+	using Color3 = OpenTK.Graphics.Color4;
+	#elif SharpDX
+	using SharpDX;
+	#elif MonoGame
+	using Color3 = Microsoft.Xna.Framework.Color;
+	#endif
+	using System;
+	using System.IO;
+
     /// <summary>
     /// Class NiLight.
     /// </summary>

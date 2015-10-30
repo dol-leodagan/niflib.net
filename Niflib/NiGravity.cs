@@ -16,21 +16,19 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-#if OpenTK
-using OpenTK;
-#elif SharpDX
-using SharpDX;
-#elif MonoGame
-using Microsoft.Xna.Framework;
-#endif
-using System;
-using System.IO;
 
-/// <summary>
-/// The Niflib namespace.
-/// </summary>
 namespace Niflib
 {
+	#if OpenTK
+	using OpenTK;
+	#elif SharpDX
+	using SharpDX;
+	#elif MonoGame
+	using Microsoft.Xna.Framework;
+	#endif
+	using System;
+	using System.IO;
+
     /// <summary>
     /// Class NiGravity.
     /// </summary>
@@ -62,7 +60,7 @@ namespace Niflib
         public Vector3 Direction;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="NiParticleModifier" /> class.
+        /// Initializes a new instance of the <see cref="NiGravity" /> class.
         /// </summary>
         /// <param name="file">The file.</param>
         /// <param name="reader">The reader.</param>

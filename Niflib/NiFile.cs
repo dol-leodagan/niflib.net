@@ -16,21 +16,19 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-using Microsoft.CSharp.RuntimeBinder;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection;
-using System.Runtime.CompilerServices;
 
-/// <summary>
-/// The Niflib namespace.
-/// </summary>
 namespace Niflib
 {
+	using Microsoft.CSharp.RuntimeBinder;
+	using System;
+	using System.Collections;
+	using System.Collections.Generic;
+	using System.IO;
+	using System.Linq;
+	using System.Linq.Expressions;
+	using System.Reflection;
+	using System.Runtime.CompilerServices;
+
     /// <summary>
     /// Class NiFile.
     /// </summary>
@@ -382,7 +380,7 @@ namespace Niflib
         /// <param name="depth">The depth.</param>
         private void PrintNifNode(NiAVObject root, int depth)
 		{
-			string text = "";
+			string text = string.Empty;
 			for (int i = 0; i < depth; i++)
 			{
 				text += "*";

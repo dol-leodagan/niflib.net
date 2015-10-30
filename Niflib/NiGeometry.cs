@@ -16,14 +16,12 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-using System;
-using System.IO;
 
-/// <summary>
-/// The Niflib namespace.
-/// </summary>
 namespace Niflib
 {
+	using System;
+	using System.IO;
+
     /// <summary>
     /// Class NiGeometry.
     /// </summary>
@@ -74,7 +72,7 @@ namespace Niflib
         /// </summary>
         /// <param name="file">The file.</param>
         /// <param name="reader">The reader.</param>
-        /// <exception cref="Exception">unspported data</exception>
+        /// <exception cref="Exception">unsupported data</exception>
         public NiGeometry(NiFile file, BinaryReader reader) : base(file, reader)
 		{
 			this.Data = new NiRef<NiGeometryData>(reader);
@@ -111,7 +109,7 @@ namespace Niflib
 			}
 			if (base.Version >= eNifVersion.VER_20_2_0_7)
 			{
-				throw new Exception("unspported data");
+				throw new Exception("unsupported data");
 			}
 		}
 	}

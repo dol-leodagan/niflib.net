@@ -16,14 +16,12 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-using System;
-using System.IO;
 
-/// <summary>
-/// The Niflib namespace.
-/// </summary>
 namespace Niflib
 {
+	using System;
+	using System.IO;
+
     /// <summary>
     /// Class ATextureRenderData.
     /// </summary>
@@ -125,7 +123,7 @@ namespace Niflib
         public MipMap[] MipMaps;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="NiObject" /> class.
+        /// Initializes a new instance of the <see cref="ATextureRenderData" /> class.
         /// </summary>
         /// <param name="file">The file.</param>
         /// <param name="reader">The reader.</param>

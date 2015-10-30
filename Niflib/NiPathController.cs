@@ -16,14 +16,12 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-using System;
-using System.IO;
 
-/// <summary>
-/// The Niflib namespace.
-/// </summary>
 namespace Niflib
 {
+	using System;
+	using System.IO;
+
     /// <summary>
     /// Class NiPathController.
     /// </summary>
@@ -65,7 +63,7 @@ namespace Niflib
         public NiRef<NiFloatData> FloatData;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="NiTimeController" /> class.
+        /// Initializes a new instance of the <see cref="NiPathController" /> class.
         /// </summary>
         /// <param name="file">The file.</param>
         /// <param name="reader">The reader.</param>

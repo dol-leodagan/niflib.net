@@ -16,22 +16,20 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
  */
-#if OpenTK
-using OpenTK.Graphics;
-using Color3 = OpenTK.Graphics.Color4;
-#elif SharpDX
-using SharpDX;
-#elif MonoGame
-using Color3 = Microsoft.Xna.Framework.Color;
-#endif
-using System;
-using System.IO;
 
-/// <summary>
-/// The Niflib namespace.
-/// </summary>
 namespace Niflib
 {
+	#if OpenTK
+	using OpenTK.Graphics;
+	using Color3 = OpenTK.Graphics.Color4;
+	#elif SharpDX
+	using SharpDX;
+	#elif MonoGame
+	using Color3 = Microsoft.Xna.Framework.Color;
+	#endif
+	using System;
+	using System.IO;
+
     /// <summary>
     /// Class NiFogProperty.
     /// </summary>
@@ -53,7 +51,7 @@ namespace Niflib
         public Color3 Color;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="NiProperty" /> class.
+        /// Initializes a new instance of the <see cref="NiFogProperty" /> class.
         /// </summary>
         /// <param name="file">The file.</param>
         /// <param name="reader">The reader.</param>
