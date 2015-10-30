@@ -1,4 +1,11 @@
+#if OpenTK
+using OpenTK;
+using OpenTK.Graphics;
+using Matrix = OpenTK.Matrix3;
+using Color3 = OpenTK.Graphics.Color4;
+#elif SharpDX
 using SharpDX;
+#endif
 using System;
 using System.IO;
 
@@ -53,7 +60,11 @@ namespace Niflib
 
 		public static Color3 ReadColor3(this BinaryReader reader)
 		{
+			#if OpenTK
+			return new Color3(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), 0);
+			#elif SharpDX
 			return new Color3(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle());
+			#endif
 		}
 
 		public static Color4 ReadColor4(this BinaryReader reader)

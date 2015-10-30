@@ -1,4 +1,9 @@
+#if OpenTK
+using OpenTK.Graphics;
+using Color3 = OpenTK.Graphics.Color4;
+#elif SharpDX
 using SharpDX;
+#endif
 using System;
 using System.IO;
 

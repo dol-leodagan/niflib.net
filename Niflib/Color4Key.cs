@@ -1,4 +1,8 @@
+#if OpenTK
+using OpenTK.Graphics;
+#elif SharpDX
 using SharpDX;
+#endif
 using System;
 using System.IO;
 

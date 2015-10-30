@@ -1,4 +1,9 @@
+#if OpenTK
+using OpenTK;
+using Matrix = OpenTK.Matrix3;
+#elif SharpDX
 using SharpDX;
+#endif
 using System;
 using System.IO;
 
