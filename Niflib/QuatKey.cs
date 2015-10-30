@@ -2,6 +2,8 @@
 using OpenTK;
 #elif SharpDX
 using SharpDX;
+#elif MonoGame
+using Microsoft.Xna.Framework;
 #endif
 using System;
 using System.IO;

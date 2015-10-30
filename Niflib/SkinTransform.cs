@@ -1,8 +1,10 @@
 #if OpenTK
 using OpenTK;
-using Matrix = OpenTK.Matrix3;
+using Matrix = OpenTK.Matrix4;
 #elif SharpDX
 using SharpDX;
+#elif MonoGame
+using Microsoft.Xna.Framework;
 #endif
 using System;
 using System.IO;

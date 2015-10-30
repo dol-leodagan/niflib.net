@@ -1,10 +1,14 @@
 #if OpenTK
 using OpenTK;
 using OpenTK.Graphics;
-using Matrix = OpenTK.Matrix3;
+using Matrix = OpenTK.Matrix4;
 using Color3 = OpenTK.Graphics.Color4;
 #elif SharpDX
 using SharpDX;
+#elif MonoGame
+using Microsoft.Xna.Framework;
+using Color3 = Microsoft.Xna.Framework.Color;
+using Color4 = Microsoft.Xna.Framework.Color;
 #endif
 using System;
 using System.IO;
@@ -62,7 +66,7 @@ namespace Niflib
 		{
 			#if OpenTK
 			return new Color3(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), 0);
-			#elif SharpDX
+			#else
 			return new Color3(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle());
 			#endif
 		}

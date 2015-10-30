@@ -3,6 +3,8 @@ using OpenTK.Graphics;
 using Color3 = OpenTK.Graphics.Color4;
 #elif SharpDX
 using SharpDX;
+#elif MonoGame
+using Color3 = Microsoft.Xna.Framework.Color;
 #endif
 using System;
 using System.IO;
