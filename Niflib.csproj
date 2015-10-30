@@ -238,4 +238,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>"$(SolutionDir)packages\7ZipCLI.9.20.0\tools\7za.exe" a -tzip niflib_net40_$(Configuration).zip *.dll *.pdb *.xml -x!*.zip</PostBuildEvent>
+  </PropertyGroup>
 </Project>
