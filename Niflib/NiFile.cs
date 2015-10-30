@@ -1,3 +1,21 @@
+/*
+ * DAWN OF LIGHT - The first free open source DAoC server emulator
+ * 
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ */
 using Microsoft.CSharp.RuntimeBinder;
 using System;
 using System.Collections;
@@ -8,41 +26,93 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
+/// <summary>
+/// The Niflib namespace.
+/// </summary>
 namespace Niflib
 {
-	public class NiFile
+    /// <summary>
+    /// Class NiFile.
+    /// </summary>
+    public class NiFile
 	{
-		[CompilerGenerated]
+        /// <summary>
+        /// Class o__11.
+        /// </summary>
+        [CompilerGenerated]
 		private static class o__11
 		{
-			public static CallSite<Action<CallSite, object, NiFile>> p__0;
+            /// <summary>
+            /// The P__0
+            /// </summary>
+            public static CallSite<Action<CallSite, object, NiFile>> p__0;
 
-			public static CallSite<Func<CallSite, object, object>> p__1;
+            /// <summary>
+            /// The P__1
+            /// </summary>
+            public static CallSite<Func<CallSite, object, object>> p__1;
 
-			public static CallSite<Func<CallSite, object, bool>> p__2;
+            /// <summary>
+            /// The P__2
+            /// </summary>
+            public static CallSite<Func<CallSite, object, bool>> p__2;
 
-			public static CallSite<Func<CallSite, object, object>> p__3;
+            /// <summary>
+            /// The P__3
+            /// </summary>
+            public static CallSite<Func<CallSite, object, object>> p__3;
 
-			public static CallSite<Func<CallSite, object, object, object>> p__4;
+            /// <summary>
+            /// The P__4
+            /// </summary>
+            public static CallSite<Func<CallSite, object, object, object>> p__4;
 
-			public static CallSite<Func<CallSite, object, bool>> p__5;
+            /// <summary>
+            /// The P__5
+            /// </summary>
+            public static CallSite<Func<CallSite, object, bool>> p__5;
 
-			public static CallSite<Action<CallSite, object, NiFile>> p__6;
+            /// <summary>
+            /// The P__6
+            /// </summary>
+            public static CallSite<Action<CallSite, object, NiFile>> p__6;
 		}
 
-		public const uint INVALID_REF = 4294967295u;
+        /// <summary>
+        /// The invali d_ reference
+        /// </summary>
+        public const uint INVALID_REF = 4294967295u;
 
-		public const string CMD_TOP_LEVEL_OBJECT = "Top Level Object";
+        /// <summary>
+        /// The cm d_ to p_ leve l_ object
+        /// </summary>
+        public const string CMD_TOP_LEVEL_OBJECT = "Top Level Object";
 
-		public const string CMD_END_OF_FILE = "End Of File";
+        /// <summary>
+        /// The cm d_ en d_ o f_ file
+        /// </summary>
+        public const string CMD_END_OF_FILE = "End Of File";
 
-		public NiHeader Header;
+        /// <summary>
+        /// The header
+        /// </summary>
+        public NiHeader Header;
 
-		public NiFooter Footer;
+        /// <summary>
+        /// The footer
+        /// </summary>
+        public NiFooter Footer;
 
-		public Dictionary<uint, NiObject> ObjectsByRef;
+        /// <summary>
+        /// The objects by reference
+        /// </summary>
+        public Dictionary<uint, NiObject> ObjectsByRef;
 
-		public eNifVersion Version
+        /// <summary>
+        /// Gets the version.
+        /// </summary>
+        /// <value>The version.</value>
+        public eNifVersion Version
 		{
 			get
 			{
@@ -50,7 +120,11 @@ namespace Niflib
 			}
 		}
 
-		public NiFile(BinaryReader reader)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NiFile"/> class.
+        /// </summary>
+        /// <param name="reader">The reader.</param>
+        public NiFile(BinaryReader reader)
 		{
 			this.Header = new NiHeader(this, reader);
 			this.ReadNiObjects(reader);
@@ -58,7 +132,17 @@ namespace Niflib
 			this.FixRefs();
 		}
 
-		private void ReadNiObjects(BinaryReader reader)
+        /// <summary>
+        /// Reads the ni objects.
+        /// </summary>
+        /// <param name="reader">The reader.</param>
+        /// <exception cref="Exception">
+        /// Check value is not zero! Invalid file?
+        /// or
+        /// Invalid object type string length!
+        /// </exception>
+        /// <exception cref="NotImplementedException"></exception>
+        private void ReadNiObjects(BinaryReader reader)
 		{
 			this.ObjectsByRef = new Dictionary<uint, NiObject>();
 			int num = 0;
@@ -129,7 +213,10 @@ namespace Niflib
 			throw new NotImplementedException(text);
 		}
 
-		private void FixRefs()
+        /// <summary>
+        /// Fixes the refs.
+        /// </summary>
+        private void FixRefs()
 		{
 			foreach (NiObject current in this.ObjectsByRef.Values)
 			{
@@ -137,7 +224,12 @@ namespace Niflib
 			}
 		}
 
-		private void FixRefs(object obj)
+        /// <summary>
+        /// Fixes the refs.
+        /// </summary>
+        /// <param name="obj">The object.</param>
+        /// <exception cref="Exception">no child</exception>
+        private void FixRefs(object obj)
 		{
 			FieldInfo[] fields = obj.GetType().GetFields();
 			for (int i = 0; i < fields.Length; i++)
@@ -249,7 +341,11 @@ namespace Niflib
 			}
 		}
 
-		public NiAVObject FindRoot()
+        /// <summary>
+        /// Finds the root.
+        /// </summary>
+        /// <returns>NiAVObject.</returns>
+        public NiAVObject FindRoot()
 		{
 			NiAVObject niAVObject = (from obj in this.ObjectsByRef.Values.OfType<NiAVObject>()
 			select obj).FirstOrDefault<NiAVObject>();
@@ -264,7 +360,10 @@ namespace Niflib
 			return niAVObject;
 		}
 
-		private void PrintNifTree()
+        /// <summary>
+        /// Prints the nif tree.
+        /// </summary>
+        private void PrintNifTree()
 		{
 			NiAVObject niAVObject = this.FindRoot();
 			if (niAVObject == null)
@@ -276,7 +375,12 @@ namespace Niflib
 			this.PrintNifNode(niAVObject, depth);
 		}
 
-		private void PrintNifNode(NiAVObject root, int depth)
+        /// <summary>
+        /// Prints the nif node.
+        /// </summary>
+        /// <param name="root">The root.</param>
+        /// <param name="depth">The depth.</param>
+        private void PrintNifNode(NiAVObject root, int depth)
 		{
 			string text = "";
 			for (int i = 0; i < depth; i++)

@@ -1,3 +1,21 @@
+/*
+ * DAWN OF LIGHT - The first free open source DAoC server emulator
+ * 
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ */
 #if OpenTK
 using OpenTK;
 #elif SharpDX
@@ -8,47 +26,112 @@ using Microsoft.Xna.Framework;
 using System;
 using System.IO;
 
+/// <summary>
+/// The Niflib namespace.
+/// </summary>
 namespace Niflib
 {
-	public class NiTexturingProperty : NiProperty
+    /// <summary>
+    /// Class NiTexturingProperty.
+    /// </summary>
+    public class NiTexturingProperty : NiProperty
 	{
-		public ushort Flags;
+        /// <summary>
+        /// The flags
+        /// </summary>
+        public ushort Flags;
 
-		public uint ApplyMode;
+        /// <summary>
+        /// The apply mode
+        /// </summary>
+        public uint ApplyMode;
 
-		public uint TextureCount;
+        /// <summary>
+        /// The texture count
+        /// </summary>
+        public uint TextureCount;
 
-		public TexDesc BaseTexture;
+        /// <summary>
+        /// The base texture
+        /// </summary>
+        public TexDesc BaseTexture;
 
-		public TexDesc DarkTexture;
+        /// <summary>
+        /// The dark texture
+        /// </summary>
+        public TexDesc DarkTexture;
 
-		public TexDesc DetailTexture;
+        /// <summary>
+        /// The detail texture
+        /// </summary>
+        public TexDesc DetailTexture;
 
-		public TexDesc GlossTexture;
+        /// <summary>
+        /// The gloss texture
+        /// </summary>
+        public TexDesc GlossTexture;
 
-		public TexDesc GlowTexture;
+        /// <summary>
+        /// The glow texture
+        /// </summary>
+        public TexDesc GlowTexture;
 
-		public TexDesc BumpMapTexture;
+        /// <summary>
+        /// The bump map texture
+        /// </summary>
+        public TexDesc BumpMapTexture;
 
-		public TexDesc Decal0Texture;
+        /// <summary>
+        /// The decal0 texture
+        /// </summary>
+        public TexDesc Decal0Texture;
 
-		public TexDesc Decal1Texture;
+        /// <summary>
+        /// The decal1 texture
+        /// </summary>
+        public TexDesc Decal1Texture;
 
-		public TexDesc Decal2Texture;
+        /// <summary>
+        /// The decal2 texture
+        /// </summary>
+        public TexDesc Decal2Texture;
 
-		public TexDesc Decal3Texture;
+        /// <summary>
+        /// The decal3 texture
+        /// </summary>
+        public TexDesc Decal3Texture;
 
-		public uint Unkown1;
+        /// <summary>
+        /// The unkown1
+        /// </summary>
+        public uint Unkown1;
 
-		public float BumpMapLumaScale;
+        /// <summary>
+        /// The bump map luma scale
+        /// </summary>
+        public float BumpMapLumaScale;
 
-		public float BumpMapLumaOffset;
+        /// <summary>
+        /// The bump map luma offset
+        /// </summary>
+        public float BumpMapLumaOffset;
 
-		public Vector3 BumpMapMatrix;
+        /// <summary>
+        /// The bump map matrix
+        /// </summary>
+        public Vector3 BumpMapMatrix;
 
-		public uint NumShaderTextures;
+        /// <summary>
+        /// The number shader textures
+        /// </summary>
+        public uint NumShaderTextures;
 
-		public NiTexturingProperty(NiFile file, BinaryReader reader) : base(file, reader)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NiTexturingProperty"/> class.
+        /// </summary>
+        /// <param name="file">The file.</param>
+        /// <param name="reader">The reader.</param>
+        public NiTexturingProperty(NiFile file, BinaryReader reader) : base(file, reader)
 		{
 			if (base.Version <= eNifVersion.VER_10_0_1_2 || base.Version >= eNifVersion.VER_20_1_0_3)
 			{

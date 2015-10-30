@@ -1,19 +1,60 @@
+/*
+ * DAWN OF LIGHT - The first free open source DAoC server emulator
+ * 
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ */
 using System;
 using System.IO;
 
+/// <summary>
+/// The Niflib namespace.
+/// </summary>
 namespace Niflib
 {
-	public class NiTriShapeData : NiTriBasedGeomData
+    /// <summary>
+    /// Class NiTriShapeData.
+    /// </summary>
+    public class NiTriShapeData : NiTriBasedGeomData
 	{
-		public uint NumTrianglePoints;
+        /// <summary>
+        /// The number triangle points
+        /// </summary>
+        public uint NumTrianglePoints;
 
-		public bool HasTriangles;
+        /// <summary>
+        /// The has triangles
+        /// </summary>
+        public bool HasTriangles;
 
-		public Triangle[] Triangles;
+        /// <summary>
+        /// The triangles
+        /// </summary>
+        public Triangle[] Triangles;
 
-		public ushort[][] MatchGroups;
+        /// <summary>
+        /// The match groups
+        /// </summary>
+        public ushort[][] MatchGroups;
 
-		public NiTriShapeData(NiFile file, BinaryReader reader) : base(file, reader)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NiTriShapeData"/> class.
+        /// </summary>
+        /// <param name="file">The file.</param>
+        /// <param name="reader">The reader.</param>
+        public NiTriShapeData(NiFile file, BinaryReader reader) : base(file, reader)
 		{
 			this.NumTrianglePoints = reader.ReadUInt32();
 			if (base.Version >= eNifVersion.VER_10_1_0_0)

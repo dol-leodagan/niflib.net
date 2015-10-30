@@ -1,45 +1,125 @@
+/*
+ * DAWN OF LIGHT - The first free open source DAoC server emulator
+ * 
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ */
 using System;
 using System.IO;
 
+/// <summary>
+/// The Niflib namespace.
+/// </summary>
 namespace Niflib
 {
-	public class NiCamera : NiAVObject
+    /// <summary>
+    /// Class NiCamera.
+    /// </summary>
+    public class NiCamera : NiAVObject
 	{
-		public ushort Unkown1;
+        /// <summary>
+        /// The unkown1
+        /// </summary>
+        public ushort Unkown1;
 
-		public float FrustrumLeft;
+        /// <summary>
+        /// The frustrum left
+        /// </summary>
+        public float FrustrumLeft;
 
-		public float FrustrumRight;
+        /// <summary>
+        /// The frustrum right
+        /// </summary>
+        public float FrustrumRight;
 
-		public float FrustrumTop;
+        /// <summary>
+        /// The frustrum top
+        /// </summary>
+        public float FrustrumTop;
 
-		public float FrustrumBottom;
+        /// <summary>
+        /// The frustrum bottom
+        /// </summary>
+        public float FrustrumBottom;
 
-		public float FrustrumNear;
+        /// <summary>
+        /// The frustrum near
+        /// </summary>
+        public float FrustrumNear;
 
-		public float FrustrumFar;
+        /// <summary>
+        /// The frustrum far
+        /// </summary>
+        public float FrustrumFar;
 
-		public bool UseOrthographicsProjection;
+        /// <summary>
+        /// The use orthographics projection
+        /// </summary>
+        public bool UseOrthographicsProjection;
 
-		public float ViewportLeft;
+        /// <summary>
+        /// The viewport left
+        /// </summary>
+        public float ViewportLeft;
 
-		public float ViewportRight;
+        /// <summary>
+        /// The viewport right
+        /// </summary>
+        public float ViewportRight;
 
-		public float ViewportTop;
+        /// <summary>
+        /// The viewport top
+        /// </summary>
+        public float ViewportTop;
 
-		public float ViewportBottom;
+        /// <summary>
+        /// The viewport bottom
+        /// </summary>
+        public float ViewportBottom;
 
-		public float LODAdjust;
+        /// <summary>
+        /// The lod adjust
+        /// </summary>
+        public float LODAdjust;
 
-		public NiRef<NiObject> UnkownLink;
+        /// <summary>
+        /// The unkown link
+        /// </summary>
+        public NiRef<NiObject> UnkownLink;
 
-		public uint Unkown2;
+        /// <summary>
+        /// The unkown2
+        /// </summary>
+        public uint Unkown2;
 
-		public uint Unkown3;
+        /// <summary>
+        /// The unkown3
+        /// </summary>
+        public uint Unkown3;
 
-		public uint Unkown4;
+        /// <summary>
+        /// The unkown4
+        /// </summary>
+        public uint Unkown4;
 
-		public NiCamera(NiFile file, BinaryReader reader) : base(file, reader)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NiCamera"/> class.
+        /// </summary>
+        /// <param name="file">The file.</param>
+        /// <param name="reader">The reader.</param>
+        public NiCamera(NiFile file, BinaryReader reader) : base(file, reader)
 		{
 			if (this.File.Header.Version >= eNifVersion.VER_10_1_0_0)
 			{

@@ -1,3 +1,21 @@
+/*
+ * DAWN OF LIGHT - The first free open source DAoC server emulator
+ * 
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ */
 #if OpenTK
 using OpenTK;
 #elif SharpDX
@@ -8,21 +26,47 @@ using Microsoft.Xna.Framework;
 using System;
 using System.IO;
 
+/// <summary>
+/// The Niflib namespace.
+/// </summary>
 namespace Niflib
 {
-	public class NiGravity : NiParticleModifier
+    /// <summary>
+    /// Class NiGravity.
+    /// </summary>
+    public class NiGravity : NiParticleModifier
 	{
-		public float UnkownFloat1;
+        /// <summary>
+        /// The unkown float1
+        /// </summary>
+        public float UnkownFloat1;
 
-		public float Force;
+        /// <summary>
+        /// The force
+        /// </summary>
+        public float Force;
 
-		public uint Type;
+        /// <summary>
+        /// The type
+        /// </summary>
+        public uint Type;
 
-		public Vector3 Position;
+        /// <summary>
+        /// The position
+        /// </summary>
+        public Vector3 Position;
 
-		public Vector3 Direction;
+        /// <summary>
+        /// The direction
+        /// </summary>
+        public Vector3 Direction;
 
-		public NiGravity(NiFile file, BinaryReader reader) : base(file, reader)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NiParticleModifier" /> class.
+        /// </summary>
+        /// <param name="file">The file.</param>
+        /// <param name="reader">The reader.</param>
+        public NiGravity(NiFile file, BinaryReader reader) : base(file, reader)
 		{
 			if (this.File.Header.Version >= eNifVersion.VER_4_0_0_2)
 			{

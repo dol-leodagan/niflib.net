@@ -1,25 +1,75 @@
+/*
+ * DAWN OF LIGHT - The first free open source DAoC server emulator
+ * 
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ */
 using System;
 using System.IO;
 
+/// <summary>
+/// The Niflib namespace.
+/// </summary>
 namespace Niflib
 {
-	public class NiSphericalCollider : NiParticleModifier
+    /// <summary>
+    /// Class NiSphericalCollider.
+    /// </summary>
+    public class NiSphericalCollider : NiParticleModifier
 	{
-		public float UnkownFloat1;
+        /// <summary>
+        /// The unkown float1
+        /// </summary>
+        public float UnkownFloat1;
 
-		public ushort UnkownShort1;
+        /// <summary>
+        /// The unkown short1
+        /// </summary>
+        public ushort UnkownShort1;
 
-		public float UnkownFloat2;
+        /// <summary>
+        /// The unkown float2
+        /// </summary>
+        public float UnkownFloat2;
 
-		public ushort UnkownShort2;
+        /// <summary>
+        /// The unkown short2
+        /// </summary>
+        public ushort UnkownShort2;
 
-		public float UnkownFloat3;
+        /// <summary>
+        /// The unkown float3
+        /// </summary>
+        public float UnkownFloat3;
 
-		public float UnkownFloat4;
+        /// <summary>
+        /// The unkown float4
+        /// </summary>
+        public float UnkownFloat4;
 
-		public float UnkownFloat5;
+        /// <summary>
+        /// The unkown float5
+        /// </summary>
+        public float UnkownFloat5;
 
-		public NiSphericalCollider(NiFile file, BinaryReader reader) : base(file, reader)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NiSphericalCollider"/> class.
+        /// </summary>
+        /// <param name="file">The file.</param>
+        /// <param name="reader">The reader.</param>
+        public NiSphericalCollider(NiFile file, BinaryReader reader) : base(file, reader)
 		{
 			this.UnkownFloat1 = reader.ReadSingle();
 			this.UnkownShort1 = reader.ReadUInt16();

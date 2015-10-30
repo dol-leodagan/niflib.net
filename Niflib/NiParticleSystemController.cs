@@ -1,3 +1,21 @@
+/*
+ * DAWN OF LIGHT - The first free open source DAoC server emulator
+ * 
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ */
 #if OpenTK
 using OpenTK;
 using OpenTK.Graphics;
@@ -10,85 +28,207 @@ using Color4 = Microsoft.Xna.Framework.Color;
 using System;
 using System.IO;
 
+/// <summary>
+/// The Niflib namespace.
+/// </summary>
 namespace Niflib
 {
-	public class NiParticleSystemController : NiTimeController
+    /// <summary>
+    /// Class NiParticleSystemController.
+    /// </summary>
+    public class NiParticleSystemController : NiTimeController
 	{
-		public uint OldSpeed;
+        /// <summary>
+        /// The old speed
+        /// </summary>
+        public uint OldSpeed;
 
-		public float Speed;
+        /// <summary>
+        /// The speed
+        /// </summary>
+        public float Speed;
 
-		public float RandomSpeed;
+        /// <summary>
+        /// The random speed
+        /// </summary>
+        public float RandomSpeed;
 
-		public float VerticalDirection;
+        /// <summary>
+        /// The vertical direction
+        /// </summary>
+        public float VerticalDirection;
 
-		public float VerticalAngle;
+        /// <summary>
+        /// The vertical angle
+        /// </summary>
+        public float VerticalAngle;
 
-		public float HorizontalDirection;
+        /// <summary>
+        /// The horizontal direction
+        /// </summary>
+        public float HorizontalDirection;
 
-		public float HorizontalAngle;
+        /// <summary>
+        /// The horizontal angle
+        /// </summary>
+        public float HorizontalAngle;
 
-		public Vector3 UnkownNormal;
+        /// <summary>
+        /// The unkown normal
+        /// </summary>
+        public Vector3 UnkownNormal;
 
-		public Color4 UnkownColor;
+        /// <summary>
+        /// The unkown color
+        /// </summary>
+        public Color4 UnkownColor;
 
-		public float Size;
+        /// <summary>
+        /// The size
+        /// </summary>
+        public float Size;
 
-		public float EmitStartTime;
+        /// <summary>
+        /// The emit start time
+        /// </summary>
+        public float EmitStartTime;
 
-		public float EmitStopTime;
+        /// <summary>
+        /// The emit stop time
+        /// </summary>
+        public float EmitStopTime;
 
-		public byte UnkownByte;
+        /// <summary>
+        /// The unkown byte
+        /// </summary>
+        public byte UnkownByte;
 
-		public uint OldEmitRate;
+        /// <summary>
+        /// The old emit rate
+        /// </summary>
+        public uint OldEmitRate;
 
-		public float EmitRate;
+        /// <summary>
+        /// The emit rate
+        /// </summary>
+        public float EmitRate;
 
-		public float Lifetime;
+        /// <summary>
+        /// The lifetime
+        /// </summary>
+        public float Lifetime;
 
-		public float LifetimeRandom;
+        /// <summary>
+        /// The lifetime random
+        /// </summary>
+        public float LifetimeRandom;
 
-		public ushort EmitFlags;
+        /// <summary>
+        /// The emit flags
+        /// </summary>
+        public ushort EmitFlags;
 
-		public Vector3 StartRandom;
+        /// <summary>
+        /// The start random
+        /// </summary>
+        public Vector3 StartRandom;
 
-		public NiRef<NiObject> Emitter;
+        /// <summary>
+        /// The emitter
+        /// </summary>
+        public NiRef<NiObject> Emitter;
 
-		public Vector3 ParticleVelocity;
+        /// <summary>
+        /// The particle velocity
+        /// </summary>
+        public Vector3 ParticleVelocity;
 
-		public Vector3 ParticleUnkownVector;
+        /// <summary>
+        /// The particle unkown vector
+        /// </summary>
+        public Vector3 ParticleUnkownVector;
 
-		public float ParticleLifeTime;
+        /// <summary>
+        /// The particle life time
+        /// </summary>
+        public float ParticleLifeTime;
 
-		public NiRef<NiObject> ParticleLink;
+        /// <summary>
+        /// The particle link
+        /// </summary>
+        public NiRef<NiObject> ParticleLink;
 
-		public uint ParticleTimestamp;
+        /// <summary>
+        /// The particle timestamp
+        /// </summary>
+        public uint ParticleTimestamp;
 
-		public ushort ParticleUnkownShort;
+        /// <summary>
+        /// The particle unkown short
+        /// </summary>
+        public ushort ParticleUnkownShort;
 
-		public ushort ParticleVertexId;
+        /// <summary>
+        /// The particle vertex identifier
+        /// </summary>
+        public ushort ParticleVertexId;
 
-		public ushort NumParticles;
+        /// <summary>
+        /// The number particles
+        /// </summary>
+        public ushort NumParticles;
 
-		public ushort NumValid;
+        /// <summary>
+        /// The number valid
+        /// </summary>
+        public ushort NumValid;
 
-		public Particle[] Particles;
+        /// <summary>
+        /// The particles
+        /// </summary>
+        public Particle[] Particles;
 
-		public NiRef<NiObject> UnkownRef;
+        /// <summary>
+        /// The unkown reference
+        /// </summary>
+        public NiRef<NiObject> UnkownRef;
 
-		public NiRef<NiParticleModifier> ParticleExtra;
+        /// <summary>
+        /// The particle extra
+        /// </summary>
+        public NiRef<NiParticleModifier> ParticleExtra;
 
-		public NiRef<NiObject> UnkownRef2;
+        /// <summary>
+        /// The unkown ref2
+        /// </summary>
+        public NiRef<NiObject> UnkownRef2;
 
-		public byte Trailer;
+        /// <summary>
+        /// The trailer
+        /// </summary>
+        public byte Trailer;
 
-		public NiRef<NiColorData> ColorData;
+        /// <summary>
+        /// The color data
+        /// </summary>
+        public NiRef<NiColorData> ColorData;
 
-		public float UnkownFloat1;
+        /// <summary>
+        /// The unkown float1
+        /// </summary>
+        public float UnkownFloat1;
 
-		public float[] UnkownFloats2;
+        /// <summary>
+        /// The unkown floats2
+        /// </summary>
+        public float[] UnkownFloats2;
 
-		public NiParticleSystemController(NiFile file, BinaryReader reader) : base(file, reader)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NiTimeController" /> class.
+        /// </summary>
+        /// <param name="file">The file.</param>
+        /// <param name="reader">The reader.</param>
+        public NiParticleSystemController(NiFile file, BinaryReader reader) : base(file, reader)
 		{
 			if (base.Version <= eNifVersion.VER_3_1)
 			{

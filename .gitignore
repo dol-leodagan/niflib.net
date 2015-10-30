@@ -196,3 +196,4 @@ FakesAssemblies/
 *.opt
 /packages
 /StyleCopViolations.xml
+/Niflib.sln.GhostDoc.xml

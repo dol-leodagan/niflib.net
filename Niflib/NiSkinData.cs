@@ -1,19 +1,60 @@
+/*
+ * DAWN OF LIGHT - The first free open source DAoC server emulator
+ * 
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ */
 using System;
 using System.IO;
 
+/// <summary>
+/// The Niflib namespace.
+/// </summary>
 namespace Niflib
 {
-	public class NiSkinData : NiObject
+    /// <summary>
+    /// Class NiSkinData.
+    /// </summary>
+    public class NiSkinData : NiObject
 	{
-		public SkinTransform Transform;
+        /// <summary>
+        /// The transform
+        /// </summary>
+        public SkinTransform Transform;
 
-		public NiRef<NiSkinPartition> Partition;
+        /// <summary>
+        /// The partition
+        /// </summary>
+        public NiRef<NiSkinPartition> Partition;
 
-		public bool HasVertexWeights;
+        /// <summary>
+        /// The has vertex weights
+        /// </summary>
+        public bool HasVertexWeights;
 
-		public SkinData[] BoneList;
+        /// <summary>
+        /// The bone list
+        /// </summary>
+        public SkinData[] BoneList;
 
-		public NiSkinData(NiFile file, BinaryReader reader) : base(file, reader)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NiSkinData"/> class.
+        /// </summary>
+        /// <param name="file">The file.</param>
+        /// <param name="reader">The reader.</param>
+        public NiSkinData(NiFile file, BinaryReader reader) : base(file, reader)
 		{
 			this.HasVertexWeights = true;
 			this.Transform = new SkinTransform(file, reader);

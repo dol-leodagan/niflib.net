@@ -1,27 +1,81 @@
+/*
+ * DAWN OF LIGHT - The first free open source DAoC server emulator
+ * 
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ */
 using System;
 using System.IO;
 
+/// <summary>
+/// The Niflib namespace.
+/// </summary>
 namespace Niflib
 {
-	public class NiGeomMorpherController : NiInterpController
+    /// <summary>
+    /// Class NiGeomMorpherController.
+    /// </summary>
+    public class NiGeomMorpherController : NiInterpController
 	{
-		public ushort ExtraFlags;
+        /// <summary>
+        /// The extra flags
+        /// </summary>
+        public ushort ExtraFlags;
 
-		public byte Unknown2;
+        /// <summary>
+        /// The unknown2
+        /// </summary>
+        public byte Unknown2;
 
-		public NiRef<NiMorphData> Data;
+        /// <summary>
+        /// The data
+        /// </summary>
+        public NiRef<NiMorphData> Data;
 
-		public bool AlwaysUpdate;
+        /// <summary>
+        /// The always update
+        /// </summary>
+        public bool AlwaysUpdate;
 
-		public uint NumInterpolators;
+        /// <summary>
+        /// The number interpolators
+        /// </summary>
+        public uint NumInterpolators;
 
-		public NiRef<NiInterpolator>[] Interpolators;
+        /// <summary>
+        /// The interpolators
+        /// </summary>
+        public NiRef<NiInterpolator>[] Interpolators;
 
-		public uint NumUnkownInts;
+        /// <summary>
+        /// The number unkown ints
+        /// </summary>
+        public uint NumUnkownInts;
 
-		public uint[] UnkownInts;
+        /// <summary>
+        /// The unkown ints
+        /// </summary>
+        public uint[] UnkownInts;
 
-		public NiGeomMorpherController(NiFile file, BinaryReader reader) : base(file, reader)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NiTimeController" /> class.
+        /// </summary>
+        /// <param name="file">The file.</param>
+        /// <param name="reader">The reader.</param>
+        /// <exception cref="Exception">Version too new!</exception>
+        public NiGeomMorpherController(NiFile file, BinaryReader reader) : base(file, reader)
 		{
 			if (base.Version >= eNifVersion.VER_10_0_1_2)
 			{

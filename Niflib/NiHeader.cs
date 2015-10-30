@@ -1,30 +1,98 @@
+/*
+ * DAWN OF LIGHT - The first free open source DAoC server emulator
+ * 
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ */
 using System;
 using System.Data;
 using System.IO;
 
+/// <summary>
+/// The Niflib namespace.
+/// </summary>
 namespace Niflib
 {
-	public class NiHeader
+    /// <summary>
+    /// Class NiHeader.
+    /// </summary>
+    public class NiHeader
 	{
-		public string VersionString;
+        /// <summary>
+        /// The version string
+        /// </summary>
+        public string VersionString;
 
-		public eNifVersion Version = (eNifVersion)4294967295u;
+        /// <summary>
+        /// The version
+        /// </summary>
+        public eNifVersion Version = (eNifVersion)4294967295u;
 
-		public uint UserVersion;
+        /// <summary>
+        /// The user version
+        /// </summary>
+        public uint UserVersion;
 
-		public uint UserVersion2;
+        /// <summary>
+        /// The user version2
+        /// </summary>
+        public uint UserVersion2;
 
-		public NiString[] BlockTypes;
+        /// <summary>
+        /// The block types
+        /// </summary>
+        public NiString[] BlockTypes;
 
-		public ushort[] BlockTypeIndex;
+        /// <summary>
+        /// The block type index
+        /// </summary>
+        public ushort[] BlockTypeIndex;
 
-		public uint[] BlockSizes;
+        /// <summary>
+        /// The block sizes
+        /// </summary>
+        public uint[] BlockSizes;
 
-		public uint NumBlocks;
+        /// <summary>
+        /// The number blocks
+        /// </summary>
+        public uint NumBlocks;
 
-		public uint UnkownInt;
+        /// <summary>
+        /// The unkown int
+        /// </summary>
+        public uint UnkownInt;
 
-		public NiHeader(NiFile file, BinaryReader reader)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NiHeader"/> class.
+        /// </summary>
+        /// <param name="file">The file.</param>
+        /// <param name="reader">The reader.</param>
+        /// <exception cref="Exception">
+        /// NIF Version not supported yet!
+        /// or
+        /// NIF Version not supported yet!
+        /// or
+        /// NIF Version not supported yet!
+        /// or
+        /// NIF Version not supported yet!
+        /// or
+        /// NIF Version not supported yet!
+        /// </exception>
+        /// <exception cref="VersionNotFoundException">Version 20.0.0.5 not supported!</exception>
+        public NiHeader(NiFile file, BinaryReader reader)
 		{
 			int num = 0;
 			long position = reader.BaseStream.Position;

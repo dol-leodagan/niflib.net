@@ -1,3 +1,21 @@
+/*
+ * DAWN OF LIGHT - The first free open source DAoC server emulator
+ * 
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ */
 #if OpenTK
 using OpenTK;
 #elif SharpDX
@@ -8,17 +26,37 @@ using Microsoft.Xna.Framework;
 using System;
 using System.IO;
 
+/// <summary>
+/// The Niflib namespace.
+/// </summary>
 namespace Niflib
 {
-	public class NiParticleRotation : NiParticleModifier
+    /// <summary>
+    /// Class NiParticleRotation.
+    /// </summary>
+    public class NiParticleRotation : NiParticleModifier
 	{
-		public bool RandomInitalAxis;
+        /// <summary>
+        /// The random inital axis
+        /// </summary>
+        public bool RandomInitalAxis;
 
-		public Vector3 InitialAxis;
+        /// <summary>
+        /// The initial axis
+        /// </summary>
+        public Vector3 InitialAxis;
 
-		public float Speed;
+        /// <summary>
+        /// The speed
+        /// </summary>
+        public float Speed;
 
-		public NiParticleRotation(NiFile file, BinaryReader reader) : base(file, reader)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NiParticleRotation"/> class.
+        /// </summary>
+        /// <param name="file">The file.</param>
+        /// <param name="reader">The reader.</param>
+        public NiParticleRotation(NiFile file, BinaryReader reader) : base(file, reader)
 		{
 			this.RandomInitalAxis = reader.ReadBoolean();
 			this.InitialAxis = reader.ReadVector3();

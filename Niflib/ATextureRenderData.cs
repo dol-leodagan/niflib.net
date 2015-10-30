@@ -1,49 +1,135 @@
+/*
+ * DAWN OF LIGHT - The first free open source DAoC server emulator
+ * 
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ */
 using System;
 using System.IO;
 
+/// <summary>
+/// The Niflib namespace.
+/// </summary>
 namespace Niflib
 {
-	public class ATextureRenderData : NiObject
+    /// <summary>
+    /// Class ATextureRenderData.
+    /// </summary>
+    public class ATextureRenderData : NiObject
 	{
-		public ePixelFormat PixelFormat;
+        /// <summary>
+        /// The pixel format
+        /// </summary>
+        public ePixelFormat PixelFormat;
 
-		public uint RedMask;
+        /// <summary>
+        /// The red mask
+        /// </summary>
+        public uint RedMask;
 
-		public uint GreenMask;
+        /// <summary>
+        /// The green mask
+        /// </summary>
+        public uint GreenMask;
 
-		public uint BlueMask;
+        /// <summary>
+        /// The blue mask
+        /// </summary>
+        public uint BlueMask;
 
-		public uint AlphaMask;
+        /// <summary>
+        /// The alpha mask
+        /// </summary>
+        public uint AlphaMask;
 
-		public byte BitsPerPixel;
+        /// <summary>
+        /// The bits per pixel
+        /// </summary>
+        public byte BitsPerPixel;
 
-		public byte[] Unkown3Bytes;
+        /// <summary>
+        /// The unkown3 bytes
+        /// </summary>
+        public byte[] Unkown3Bytes;
 
-		public byte[] Unkown8Bytes;
+        /// <summary>
+        /// The unkown8 bytes
+        /// </summary>
+        public byte[] Unkown8Bytes;
 
-		public uint UnkownInt;
+        /// <summary>
+        /// The unkown int
+        /// </summary>
+        public uint UnkownInt;
 
-		public uint UnkownInt2;
+        /// <summary>
+        /// The unkown int2
+        /// </summary>
+        public uint UnkownInt2;
 
-		public uint UnkownInt3;
+        /// <summary>
+        /// The unkown int3
+        /// </summary>
+        public uint UnkownInt3;
 
-		public uint UnkownInt4;
+        /// <summary>
+        /// The unkown int4
+        /// </summary>
+        public uint UnkownInt4;
 
-		public byte Flags;
+        /// <summary>
+        /// The flags
+        /// </summary>
+        public byte Flags;
 
-		public byte UnkownByte1;
+        /// <summary>
+        /// The unkown byte1
+        /// </summary>
+        public byte UnkownByte1;
 
-		public ChannelData[] ChannelData;
+        /// <summary>
+        /// The channel data
+        /// </summary>
+        public ChannelData[] ChannelData;
 
-		public NiRef<NiPalette> Palette;
+        /// <summary>
+        /// The palette
+        /// </summary>
+        public NiRef<NiPalette> Palette;
 
-		public uint NumMipMaps;
+        /// <summary>
+        /// The number mip maps
+        /// </summary>
+        public uint NumMipMaps;
 
-		public uint BytesPerPixel;
+        /// <summary>
+        /// The bytes per pixel
+        /// </summary>
+        public uint BytesPerPixel;
 
-		public MipMap[] MipMaps;
+        /// <summary>
+        /// The mip maps
+        /// </summary>
+        public MipMap[] MipMaps;
 
-		public ATextureRenderData(NiFile file, BinaryReader reader) : base(file, reader)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NiObject" /> class.
+        /// </summary>
+        /// <param name="file">The file.</param>
+        /// <param name="reader">The reader.</param>
+        public ATextureRenderData(NiFile file, BinaryReader reader) : base(file, reader)
 		{
 			this.PixelFormat = (ePixelFormat)reader.ReadUInt32();
 			if (base.Version <= eNifVersion.VER_10_2_0_0)

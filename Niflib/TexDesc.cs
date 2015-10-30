@@ -1,3 +1,21 @@
+/*
+ * DAWN OF LIGHT - The first free open source DAoC server emulator
+ * 
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ */
 #if OpenTK
 using OpenTK;
 #elif SharpDX
@@ -8,37 +26,87 @@ using Microsoft.Xna.Framework;
 using System;
 using System.IO;
 
+/// <summary>
+/// The Niflib namespace.
+/// </summary>
 namespace Niflib
 {
-	public class TexDesc
+    /// <summary>
+    /// Class TexDesc.
+    /// </summary>
+    public class TexDesc
 	{
-		public NiRef<NiSourceTexture> Source;
+        /// <summary>
+        /// The source
+        /// </summary>
+        public NiRef<NiSourceTexture> Source;
 
-		public eTexClampMode ClampMode;
+        /// <summary>
+        /// The clamp mode
+        /// </summary>
+        public eTexClampMode ClampMode;
 
-		public eTexFilterMode FilterMode;
+        /// <summary>
+        /// The filter mode
+        /// </summary>
+        public eTexFilterMode FilterMode;
 
-		public ushort Flags;
+        /// <summary>
+        /// The flags
+        /// </summary>
+        public ushort Flags;
 
-		public uint UVSetIndex;
+        /// <summary>
+        /// The uv set index
+        /// </summary>
+        public uint UVSetIndex;
 
-		public short PS2L;
+        /// <summary>
+        /// The p s2 l
+        /// </summary>
+        public short PS2L;
 
-		public short PS2K;
+        /// <summary>
+        /// The p s2 k
+        /// </summary>
+        public short PS2K;
 
-		public bool HasTextureTransform;
+        /// <summary>
+        /// The has texture transform
+        /// </summary>
+        public bool HasTextureTransform;
 
-		public Vector2 Translation;
+        /// <summary>
+        /// The translation
+        /// </summary>
+        public Vector2 Translation;
 
-		public Vector2 Tiling;
+        /// <summary>
+        /// The tiling
+        /// </summary>
+        public Vector2 Tiling;
 
-		public float WRotation;
+        /// <summary>
+        /// The w rotation
+        /// </summary>
+        public float WRotation;
 
-		public uint TransformType;
+        /// <summary>
+        /// The transform type
+        /// </summary>
+        public uint TransformType;
 
-		public Vector2 CenterOffset;
+        /// <summary>
+        /// The center offset
+        /// </summary>
+        public Vector2 CenterOffset;
 
-		public TexDesc(NiFile file, BinaryReader reader)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TexDesc"/> class.
+        /// </summary>
+        /// <param name="file">The file.</param>
+        /// <param name="reader">The reader.</param>
+        public TexDesc(NiFile file, BinaryReader reader)
 		{
 			this.Source = new NiRef<NiSourceTexture>(reader);
 			if (file.Version <= eNifVersion.VER_20_0_0_5)

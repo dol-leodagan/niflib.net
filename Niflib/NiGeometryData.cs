@@ -1,3 +1,21 @@
+/*
+ * DAWN OF LIGHT - The first free open source DAoC server emulator
+ * 
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ */
 #if OpenTK
 using OpenTK;
 using OpenTK.Graphics;
@@ -10,49 +28,117 @@ using Color4 = Microsoft.Xna.Framework.Color;
 using System;
 using System.IO;
 
+/// <summary>
+/// The Niflib namespace.
+/// </summary>
 namespace Niflib
 {
-	public class NiGeometryData : NiObject
+    /// <summary>
+    /// Class NiGeometryData.
+    /// </summary>
+    public class NiGeometryData : NiObject
 	{
-		public uint Unkown1;
+        /// <summary>
+        /// The unkown1
+        /// </summary>
+        public uint Unkown1;
 
-		public byte KeepFlags;
+        /// <summary>
+        /// The keep flags
+        /// </summary>
+        public byte KeepFlags;
 
-		public byte CompressFlags;
+        /// <summary>
+        /// The compress flags
+        /// </summary>
+        public byte CompressFlags;
 
-		public bool HasVertices;
+        /// <summary>
+        /// The has vertices
+        /// </summary>
+        public bool HasVertices;
 
-		public Vector3[] Vertices;
+        /// <summary>
+        /// The vertices
+        /// </summary>
+        public Vector3[] Vertices;
 
-		public byte TSpaceFlag;
+        /// <summary>
+        /// The t space flag
+        /// </summary>
+        public byte TSpaceFlag;
 
-		public bool HasNormals;
+        /// <summary>
+        /// The has normals
+        /// </summary>
+        public bool HasNormals;
 
-		public Vector3[] Normals;
+        /// <summary>
+        /// The normals
+        /// </summary>
+        public Vector3[] Normals;
 
-		public bool HasVertexColors;
+        /// <summary>
+        /// The has vertex colors
+        /// </summary>
+        public bool HasVertexColors;
 
-		public bool HasUV;
+        /// <summary>
+        /// The has uv
+        /// </summary>
+        public bool HasUV;
 
-		public ushort ConsistencyFlags;
+        /// <summary>
+        /// The consistency flags
+        /// </summary>
+        public ushort ConsistencyFlags;
 
-		public Vector3 Center;
+        /// <summary>
+        /// The center
+        /// </summary>
+        public Vector3 Center;
 
-		public float Radius;
+        /// <summary>
+        /// The radius
+        /// </summary>
+        public float Radius;
 
-		public Color4[] VertexColors;
+        /// <summary>
+        /// The vertex colors
+        /// </summary>
+        public Color4[] VertexColors;
 
-		public Vector2[][] UVSets;
+        /// <summary>
+        /// The uv sets
+        /// </summary>
+        public Vector2[][] UVSets;
 
-		public uint AdditionalDataID;
+        /// <summary>
+        /// The additional data identifier
+        /// </summary>
+        public uint AdditionalDataID;
 
-		public Vector3[] Binormals;
+        /// <summary>
+        /// The binormals
+        /// </summary>
+        public Vector3[] Binormals;
 
-		public Vector3[] Tangents;
+        /// <summary>
+        /// The tangents
+        /// </summary>
+        public Vector3[] Tangents;
 
-		public uint NumVertices;
+        /// <summary>
+        /// The number vertices
+        /// </summary>
+        public uint NumVertices;
 
-		public NiGeometryData(NiFile file, BinaryReader reader) : base(file, reader)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NiObject" /> class.
+        /// </summary>
+        /// <param name="file">The file.</param>
+        /// <param name="reader">The reader.</param>
+        public NiGeometryData(NiFile file, BinaryReader reader) : base(file, reader)
 		{
 			if (base.Version >= eNifVersion.VER_10_2_0_0)
 			{

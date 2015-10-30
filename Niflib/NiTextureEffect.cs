@@ -1,3 +1,21 @@
+/*
+ * DAWN OF LIGHT - The first free open source DAoC server emulator
+ * 
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ */
 #if OpenTK
 using OpenTK;
 using Matrix = OpenTK.Matrix4;
@@ -9,39 +27,93 @@ using Microsoft.Xna.Framework;
 using System;
 using System.IO;
 
+/// <summary>
+/// The Niflib namespace.
+/// </summary>
 namespace Niflib
 {
-	public class NiTextureEffect : NiDynamicEffect
+    /// <summary>
+    /// Class NiTextureEffect.
+    /// </summary>
+    public class NiTextureEffect : NiDynamicEffect
 	{
-		public Matrix ModelProjectionMatrix;
+        /// <summary>
+        /// The model projection matrix
+        /// </summary>
+        public Matrix ModelProjectionMatrix;
 
-		public Vector3 ModelProjectionTransform;
+        /// <summary>
+        /// The model projection transform
+        /// </summary>
+        public Vector3 ModelProjectionTransform;
 
-		public eTexFilterMode TextureFiltering;
+        /// <summary>
+        /// The texture filtering
+        /// </summary>
+        public eTexFilterMode TextureFiltering;
 
-		public eTexClampMode TextureClamping;
+        /// <summary>
+        /// The texture clamping
+        /// </summary>
+        public eTexClampMode TextureClamping;
 
-		public ushort Unknown1;
+        /// <summary>
+        /// The unknown1
+        /// </summary>
+        public ushort Unknown1;
 
-		public eEffectType EffectType;
+        /// <summary>
+        /// The effect type
+        /// </summary>
+        public eEffectType EffectType;
 
-		public eCoordGenType CoordGenType;
+        /// <summary>
+        /// The coord gen type
+        /// </summary>
+        public eCoordGenType CoordGenType;
 
-		public NiRef<NiSourceTexture> SourceTexture;
+        /// <summary>
+        /// The source texture
+        /// </summary>
+        public NiRef<NiSourceTexture> SourceTexture;
 
-		public bool ClippingPlane;
+        /// <summary>
+        /// The clipping plane
+        /// </summary>
+        public bool ClippingPlane;
 
-		public Vector3 unknownVector;
+        /// <summary>
+        /// The unknown vector
+        /// </summary>
+        public Vector3 unknownVector;
 
-		public float Unknown2;
+        /// <summary>
+        /// The unknown2
+        /// </summary>
+        public float Unknown2;
 
-		public short PS2L;
+        /// <summary>
+        /// The p s2 l
+        /// </summary>
+        public short PS2L;
 
-		public short PS2K;
+        /// <summary>
+        /// The p s2 k
+        /// </summary>
+        public short PS2K;
 
-		public ushort Unknown3;
+        /// <summary>
+        /// The unknown3
+        /// </summary>
+        public ushort Unknown3;
 
-		public NiTextureEffect(NiFile file, BinaryReader reader) : base(file, reader)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NiTextureEffect"/> class.
+        /// </summary>
+        /// <param name="file">The file.</param>
+        /// <param name="reader">The reader.</param>
+        /// <exception cref="Exception">NOT SUPPORTED!</exception>
+        public NiTextureEffect(NiFile file, BinaryReader reader) : base(file, reader)
 		{
 			this.ModelProjectionMatrix = reader.ReadMatrix33();
 			this.ModelProjectionTransform = reader.ReadVector3();

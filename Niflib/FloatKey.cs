@@ -1,3 +1,21 @@
+/*
+ * DAWN OF LIGHT - The first free open source DAoC server emulator
+ * 
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ */
 #if OpenTK
 using OpenTK;
 #elif SharpDX
@@ -8,21 +26,48 @@ using Microsoft.Xna.Framework;
 using System;
 using System.IO;
 
+/// <summary>
+/// The Niflib namespace.
+/// </summary>
 namespace Niflib
 {
-	public class FloatKey : BaseKey
+    /// <summary>
+    /// Class FloatKey.
+    /// </summary>
+    public class FloatKey : BaseKey
 	{
-		public float Time;
+        /// <summary>
+        /// The time
+        /// </summary>
+        public float Time;
 
-		public float Value;
+        /// <summary>
+        /// The value
+        /// </summary>
+        public float Value;
 
-		public float Forward;
+        /// <summary>
+        /// The forward
+        /// </summary>
+        public float Forward;
 
-		public float Backward;
+        /// <summary>
+        /// The backward
+        /// </summary>
+        public float Backward;
 
-		public Vector3 TBC;
+        /// <summary>
+        /// The TBC
+        /// </summary>
+        public Vector3 TBC;
 
-		public FloatKey(BinaryReader reader, eKeyType type) : base(reader, type)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FloatKey"/> class.
+        /// </summary>
+        /// <param name="reader">The reader.</param>
+        /// <param name="type">The type.</param>
+        /// <exception cref="Exception">Invalid eKeyType!</exception>
+        public FloatKey(BinaryReader reader, eKeyType type) : base(reader, type)
 		{
 			this.Time = reader.ReadSingle();
 			this.Value = reader.ReadSingle();

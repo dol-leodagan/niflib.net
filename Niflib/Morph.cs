@@ -1,3 +1,21 @@
+/*
+ * DAWN OF LIGHT - The first free open source DAoC server emulator
+ * 
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ */
 #if OpenTK
 using OpenTK;
 #elif SharpDX
@@ -8,23 +26,53 @@ using Microsoft.Xna.Framework;
 using System;
 using System.IO;
 
+/// <summary>
+/// The Niflib namespace.
+/// </summary>
 namespace Niflib
 {
-	public class Morph
+    /// <summary>
+    /// Class Morph.
+    /// </summary>
+    public class Morph
 	{
-		public NiString FrameName;
+        /// <summary>
+        /// The frame name
+        /// </summary>
+        public NiString FrameName;
 
-		public uint NumKeys;
+        /// <summary>
+        /// The number keys
+        /// </summary>
+        public uint NumKeys;
 
-		public uint Interpolation;
+        /// <summary>
+        /// The interpolation
+        /// </summary>
+        public uint Interpolation;
 
-		public KeyGroup<FloatKey> Keys;
+        /// <summary>
+        /// The keys
+        /// </summary>
+        public KeyGroup<FloatKey> Keys;
 
-		public uint UnkownInt;
+        /// <summary>
+        /// The unkown int
+        /// </summary>
+        public uint UnkownInt;
 
-		public Vector3[] Vectors;
+        /// <summary>
+        /// The vectors
+        /// </summary>
+        public Vector3[] Vectors;
 
-		public Morph(NiFile file, BinaryReader reader, uint numVertices)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Morph"/> class.
+        /// </summary>
+        /// <param name="file">The file.</param>
+        /// <param name="reader">The reader.</param>
+        /// <param name="numVertices">The number vertices.</param>
+        public Morph(NiFile file, BinaryReader reader, uint numVertices)
 		{
 			if (file.Version >= eNifVersion.VER_10_1_0_106)
 			{

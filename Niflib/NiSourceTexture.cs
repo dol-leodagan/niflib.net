@@ -1,29 +1,85 @@
+/*
+ * DAWN OF LIGHT - The first free open source DAoC server emulator
+ * 
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ */
 using System;
 using System.IO;
 
+/// <summary>
+/// The Niflib namespace.
+/// </summary>
 namespace Niflib
 {
-	public class NiSourceTexture : NiTexture
+    /// <summary>
+    /// Class NiSourceTexture.
+    /// </summary>
+    public class NiSourceTexture : NiTexture
 	{
-		public bool UseExternal;
+        /// <summary>
+        /// The use external
+        /// </summary>
+        public bool UseExternal;
 
-		public NiString FileName;
+        /// <summary>
+        /// The file name
+        /// </summary>
+        public NiString FileName;
 
-		public ePixelLayout PixelLayout;
+        /// <summary>
+        /// The pixel layout
+        /// </summary>
+        public ePixelLayout PixelLayout;
 
-		public eMipMapFormat UseMipmaps;
+        /// <summary>
+        /// The use mipmaps
+        /// </summary>
+        public eMipMapFormat UseMipmaps;
 
-		public eAlphaFormat AlphaFormat;
+        /// <summary>
+        /// The alpha format
+        /// </summary>
+        public eAlphaFormat AlphaFormat;
 
-		public bool IsStatic;
+        /// <summary>
+        /// The is static
+        /// </summary>
+        public bool IsStatic;
 
-		public bool DirectRender;
+        /// <summary>
+        /// The direct render
+        /// </summary>
+        public bool DirectRender;
 
-		public bool PersistentRenderData;
+        /// <summary>
+        /// The persistent render data
+        /// </summary>
+        public bool PersistentRenderData;
 
-		public NiRef<ATextureRenderData> InternalTexture;
+        /// <summary>
+        /// The internal texture
+        /// </summary>
+        public NiRef<ATextureRenderData> InternalTexture;
 
-		public NiSourceTexture(NiFile file, BinaryReader reader) : base(file, reader)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NiTexture" /> class.
+        /// </summary>
+        /// <param name="file">The file.</param>
+        /// <param name="reader">The reader.</param>
+        public NiSourceTexture(NiFile file, BinaryReader reader) : base(file, reader)
 		{
 			this.IsStatic = true;
 			this.UseExternal = reader.ReadBoolean();
