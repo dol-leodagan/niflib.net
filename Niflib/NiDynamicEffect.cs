@@ -47,7 +47,7 @@ namespace Niflib
 			this.SwitchState = true;
 			if (base.Version >= eNifVersion.VER_10_1_0_106)
 			{
-				this.SwitchState = reader.ReadBoolean();
+				this.SwitchState = reader.ReadBoolean(Version);
 			}
 			if (base.Version <= eNifVersion.VER_4_0_0_2 || base.Version >= eNifVersion.VER_10_0_1_0)
 			{

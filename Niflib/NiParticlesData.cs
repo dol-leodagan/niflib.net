@@ -96,21 +96,21 @@ namespace Niflib
 			}
 			if (this.File.Header.Version >= eNifVersion.VER_10_1_0_0)
 			{
-				this.HasRadii = reader.ReadBoolean();
+				this.HasRadii = reader.ReadBoolean(Version);
 				if (this.HasRadii)
 				{
 					this.Radii = reader.ReadFloatArray((int)this.NumVertices);
 				}
 			}
 			this.NumActive = reader.ReadUInt16();
-			this.HasSizes = reader.ReadBoolean();
+			this.HasSizes = reader.ReadBoolean(Version);
 			if (this.HasSizes)
 			{
 				this.Sizes = reader.ReadFloatArray((int)this.NumVertices);
 			}
 			if (this.File.Header.Version >= eNifVersion.VER_10_0_1_0)
 			{
-				this.HasRotations = reader.ReadBoolean();
+				this.HasRotations = reader.ReadBoolean(Version);
 				if (this.HasRotations)
 				{
 					this.Rotations = new Vector4[this.NumVertices];

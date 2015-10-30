@@ -140,7 +140,7 @@ namespace Niflib
 			}
 			if (this.File.Header.Version >= eNifVersion.VER_3_0 && this.File.Header.Version <= eNifVersion.VER_4_2_2_0)
 			{
-				this.HasBoundingBox = reader.ReadBoolean();
+				this.HasBoundingBox = reader.ReadBoolean(Version);
 				if (this.HasBoundingBox)
 				{
 					throw new Exception("Cannot read BoundingBoxes yet");

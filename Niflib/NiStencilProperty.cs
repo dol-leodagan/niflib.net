@@ -85,7 +85,7 @@ namespace Niflib
 			}
 			if (this.File.Header.Version <= eNifVersion.VER_20_0_0_5)
 			{
-				this.IsStencilEnabled = reader.ReadBoolean();
+				this.IsStencilEnabled = reader.ReadBoolean(Version);
 				this.StencilFunction = (eStencilCompareMode)reader.ReadUInt32();
 				this.StencilRef = reader.ReadUInt32();
 				this.StencilMask = reader.ReadUInt32();

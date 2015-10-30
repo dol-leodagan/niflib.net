@@ -53,7 +53,7 @@ namespace Niflib
 		{
 			if (base.Version <= eNifVersion.VER_4_2_2_0)
 			{
-				this.HasRotations2 = reader.ReadBoolean();
+				this.HasRotations2 = reader.ReadBoolean(Version);
 				this.Rotations2 = new Vector4[this.NumVertices];
 				int num = 0;
 				while ((long)num < (long)((ulong)this.NumVertices))

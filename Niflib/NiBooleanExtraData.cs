@@ -39,7 +39,7 @@ namespace Niflib
         /// <param name="reader">The reader.</param>
         public NiBooleanExtraData(NiFile file, BinaryReader reader) : base(file, reader)
 		{
-			this.Data = reader.ReadBoolean();
+			this.Data = reader.ReadBoolean(Version);
 		}
 	}
 }

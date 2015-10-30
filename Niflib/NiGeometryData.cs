@@ -148,7 +148,7 @@ namespace Niflib
 				this.KeepFlags = reader.ReadByte();
 				this.CompressFlags = reader.ReadByte();
 			}
-			this.HasVertices = reader.ReadBoolean();
+			this.HasVertices = reader.ReadBoolean(Version);
 			if (this.HasVertices)
 			{
 				this.Vertices = new Vector3[this.NumVertices];
@@ -165,7 +165,7 @@ namespace Niflib
 				num2 = (int)reader.ReadByte();
 				this.TSpaceFlag = reader.ReadByte();
 			}
-			this.HasNormals = reader.ReadBoolean();
+			this.HasNormals = reader.ReadBoolean(Version);
 			if (this.HasNormals)
 			{
 				this.Normals = new Vector3[this.NumVertices];
@@ -198,7 +198,7 @@ namespace Niflib
 			}
 			this.Center = reader.ReadVector3();
 			this.Radius = reader.ReadSingle();
-			this.HasVertexColors = reader.ReadBoolean();
+			this.HasVertexColors = reader.ReadBoolean(Version);
 			if (this.HasVertexColors)
 			{
 				this.VertexColors = new Color4[this.NumVertices];
@@ -216,7 +216,7 @@ namespace Niflib
 			}
 			if (base.Version <= eNifVersion.VER_4_0_0_2)
 			{
-				this.HasUV = reader.ReadBoolean();
+				this.HasUV = reader.ReadBoolean(Version);
 			}
 			int num7;
 			if (base.Version < eNifVersion.VER_20_2_0_7 || this.File.Header.UserVersion != 1u)

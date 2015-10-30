@@ -63,7 +63,7 @@ namespace Niflib
 			}
 			if (base.Version >= eNifVersion.VER_4_2_1_0)
 			{
-				this.HasVertexWeights = reader.ReadBoolean();
+				this.HasVertexWeights = reader.ReadBoolean(Version);
 			}
 			if (this.HasVertexWeights)
 			{

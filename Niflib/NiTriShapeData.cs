@@ -57,7 +57,7 @@ namespace Niflib
 			this.NumTrianglePoints = reader.ReadUInt32();
 			if (base.Version >= eNifVersion.VER_10_1_0_0)
 			{
-				this.HasTriangles = reader.ReadBoolean();
+				this.HasTriangles = reader.ReadBoolean(Version);
 			}
 			if (base.Version <= eNifVersion.VER_10_0_1_2 || this.HasTriangles || base.Version >= eNifVersion.VER_10_0_1_3)
 			{

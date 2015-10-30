@@ -140,27 +140,27 @@ namespace Niflib
 				this.ApplyMode = reader.ReadUInt32();
 			}
 			this.TextureCount = reader.ReadUInt32();
-			if (reader.ReadBoolean())
+			if (reader.ReadBoolean(Version))
 			{
 				this.BaseTexture = new TexDesc(file, reader);
 			}
-			if (reader.ReadBoolean())
+			if (reader.ReadBoolean(Version))
 			{
 				this.DarkTexture = new TexDesc(file, reader);
 			}
-			if (reader.ReadBoolean())
+			if (reader.ReadBoolean(Version))
 			{
 				this.DetailTexture = new TexDesc(file, reader);
 			}
-			if (reader.ReadBoolean())
+			if (reader.ReadBoolean(Version))
 			{
 				this.GlossTexture = new TexDesc(file, reader);
 			}
-			if (reader.ReadBoolean())
+			if (reader.ReadBoolean(Version))
 			{
 				this.GlowTexture = new TexDesc(file, reader);
 			}
-			if (reader.ReadBoolean())
+			if (reader.ReadBoolean(Version))
 			{
 				this.BumpMapTexture = new TexDesc(file, reader);
 				this.BumpMapLumaScale = reader.ReadSingle();
@@ -168,7 +168,7 @@ namespace Niflib
 				this.BumpMapMatrix = new Vector3(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle());
 				reader.ReadSingle();
 			}
-			if (reader.ReadBoolean())
+			if (reader.ReadBoolean(Version))
 			{
 				this.Decal0Texture = new TexDesc(file, reader);
 			}
@@ -178,7 +178,7 @@ namespace Niflib
 				int num = 0;
 				while ((long)num < (long)((ulong)this.NumShaderTextures))
 				{
-					if (reader.ReadBoolean())
+					if (reader.ReadBoolean(Version))
 					{
 						new TexDesc(file, reader);
 						reader.ReadUInt32();

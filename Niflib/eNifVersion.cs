@@ -57,6 +57,10 @@ namespace Niflib
         /// <summary>
         /// The ve R_4_1_0_12
         /// </summary>
+        VER_4_1_0_1 = 0x04010001,
+        /// <summary>
+        /// The ve R_4_1_0_12
+        /// </summary>
         VER_4_1_0_12 = 67174412u,
         /// <summary>
         /// The ve R_4_2_0_2

@@ -127,7 +127,7 @@ namespace Niflib
 			{
 				this.SourceTexture = new NiRef<NiSourceTexture>(reader);
 			}
-			this.ClippingPlane = reader.ReadBoolean();
+			this.ClippingPlane = reader.ReadBoolean(Version);
 			this.unknownVector = new Vector3(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle());
 			this.Unknown2 = reader.ReadSingle();
 			if (this.File.Header.Version <= eNifVersion.VER_10_2_0_0)

@@ -131,7 +131,7 @@ namespace Niflib
 			this.FrustrumFar = reader.ReadSingle();
 			if (this.File.Header.Version >= eNifVersion.VER_10_1_0_0)
 			{
-				this.UseOrthographicsProjection = reader.ReadBoolean();
+				this.UseOrthographicsProjection = reader.ReadBoolean(Version);
 			}
 			this.ViewportLeft = reader.ReadSingle();
 			this.ViewportRight = reader.ReadSingle();

@@ -56,7 +56,7 @@ namespace Niflib
         /// <param name="reader">The reader.</param>
         public NiParticleRotation(NiFile file, BinaryReader reader) : base(file, reader)
 		{
-			this.RandomInitalAxis = reader.ReadBoolean();
+			this.RandomInitalAxis = reader.ReadBoolean(Version);
 			this.InitialAxis = reader.ReadVector3();
 			this.Speed = reader.ReadSingle();
 		}

@@ -51,7 +51,7 @@ namespace Niflib
 			}
 			if (base.Version >= eNifVersion.VER_10_0_1_3)
 			{
-				this.HasPoints = reader.ReadBoolean();
+				this.HasPoints = reader.ReadBoolean(Version);
 			}
 			if (base.Version < eNifVersion.VER_10_0_1_3 || this.HasPoints)
 			{

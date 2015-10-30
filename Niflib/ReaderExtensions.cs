@@ -39,6 +39,20 @@ namespace Niflib
     /// </summary>
     public static class ReaderExtensions
 	{
+    	/// <summary>
+    	/// Read a Boolean from the Stream Depending on Nif Version
+    	/// </summary>
+    	/// <param name="reader">Reader</param>
+    	/// <param name="version">Nif Object Version</param>
+    	/// <returns>bool from Int or Byte</returns>
+    	public static bool ReadBoolean(this BinaryReader reader, eNifVersion version)
+    	{
+    		if (version < eNifVersion.VER_4_1_0_1)
+    			return reader.ReadUInt32() != 0;
+    		
+    		return reader.ReadBoolean();
+    	}
+    	
         /// <summary>
         /// Reads the float array.
         /// </summary>

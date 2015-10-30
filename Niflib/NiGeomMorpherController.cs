@@ -84,7 +84,7 @@ namespace Niflib
 				this.Unknown2 = reader.ReadByte();
 			}
 			this.Data = new NiRef<NiMorphData>(reader);
-			this.AlwaysUpdate = reader.ReadBoolean();
+			this.AlwaysUpdate = reader.ReadBoolean(Version);
 			if (base.Version >= eNifVersion.VER_10_1_0_106)
 			{
 				this.NumInterpolators = reader.ReadUInt32();

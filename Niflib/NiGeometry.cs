@@ -96,7 +96,7 @@ namespace Niflib
 			}
 			if (base.Version >= eNifVersion.VER_10_0_1_0 && base.Version <= eNifVersion.VER_20_1_0_3)
 			{
-				this.HasShader = reader.ReadBoolean();
+				this.HasShader = reader.ReadBoolean(Version);
 				if (this.HasShader)
 				{
 					this.ShaderName = new string(reader.ReadChars(reader.ReadInt32()));

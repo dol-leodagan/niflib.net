@@ -165,7 +165,7 @@ namespace Niflib
 			this.HasFaces = true;
 			if (file.Version >= eNifVersion.VER_10_1_0_0)
 			{
-				this.HasVertexMap = reader.ReadBoolean();
+				this.HasVertexMap = reader.ReadBoolean(file.Version);
 			}
 			if (this.HasVertexMap)
 			{
@@ -173,7 +173,7 @@ namespace Niflib
 			}
 			if (file.Version >= eNifVersion.VER_10_1_0_0)
 			{
-				this.HasVertexWeights = reader.ReadBoolean();
+				this.HasVertexWeights = reader.ReadBoolean(file.Version);
 			}
 			if (this.HasVertexWeights)
 			{
@@ -186,7 +186,7 @@ namespace Niflib
 			this.StripLengths = reader.ReadUInt16Array((int)this.NumStrips);
 			if (file.Version >= eNifVersion.VER_10_1_0_0)
 			{
-				this.HasFaces = reader.ReadBoolean();
+				this.HasFaces = reader.ReadBoolean(file.Version);
 			}
 			if (this.HasFaces && this.NumStrips != 0)
 			{
@@ -204,7 +204,7 @@ namespace Niflib
 					this.Triangles[k] = new Triangle(reader);
 				}
 			}
-			this.HasBoneIndicies = reader.ReadBoolean();
+			this.HasBoneIndicies = reader.ReadBoolean(file.Version);
 			if (this.HasBoneIndicies)
 			{
 				this.BoneIndicies = new byte[(int)this.NumVertices][];

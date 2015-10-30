@@ -131,7 +131,7 @@ namespace Niflib
 			}
 			if (file.Version >= eNifVersion.VER_10_1_0_0)
 			{
-				this.HasTextureTransform = reader.ReadBoolean();
+				this.HasTextureTransform = reader.ReadBoolean(file.Version);
 				if (this.HasTextureTransform)
 				{
 					this.Translation = reader.ReadVector2();
