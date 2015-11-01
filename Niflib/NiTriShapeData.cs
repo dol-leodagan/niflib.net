@@ -62,6 +62,7 @@ namespace Niflib
 			if (base.Version <= eNifVersion.VER_10_0_1_2 || this.HasTriangles || base.Version >= eNifVersion.VER_10_0_1_3)
 			{
 				this.Triangles = new Triangle[(int)this.NumTriangles];
+				this.HasTriangles = this.Triangles.Length > 0;
 				for (int i = 0; i < (int)this.NumTriangles; i++)
 				{
 					this.Triangles[i] = new Triangle(reader);

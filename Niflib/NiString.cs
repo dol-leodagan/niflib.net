@@ -39,7 +39,10 @@ namespace Niflib
         /// <param name="reader">The reader.</param>
         public NiString(NiFile file, BinaryReader reader)
 		{
-			this.Value = new string(reader.ReadChars((int)reader.ReadUInt32()));
+        	var count = reader.ReadUInt32();
+        	if (count > 16384)
+        		throw new NotSupportedException("String too long. Not a NIF file or unsupported format?");
+        	this.Value = new string(reader.ReadChars((int)count));
 		}
 
         /// <summary>

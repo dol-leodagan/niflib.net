@@ -99,7 +99,7 @@ namespace Niflib
 				this.HasShader = reader.ReadBoolean(Version);
 				if (this.HasShader)
 				{
-					this.ShaderName = new string(reader.ReadChars(reader.ReadInt32()));
+					this.ShaderName = new NiString(file, reader).Value;
 					this.UnkownInteger = reader.ReadUInt32();
 				}
 			}
