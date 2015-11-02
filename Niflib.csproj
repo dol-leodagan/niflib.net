@@ -14,6 +14,8 @@
     <NoWin32Manifest>False</NoWin32Manifest>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <SignAssembly>False</SignAssembly>
+    <DelaySign>False</DelaySign>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -47,6 +49,8 @@
     <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
     <DebugType>None</DebugType>
     <DefineConstants>SharpDX</DefineConstants>
+    <StartAction>Program</StartAction>
+    <StartProgram>bin\SharpDX\Examples.exe</StartProgram>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'MonoGame' ">
     <AssemblyName>Niflib.MonoGame</AssemblyName>
@@ -60,6 +64,7 @@
     <Reference Include="SharpDX">
       <HintPath>packages\SharpDX.2.6.3\Bin\DirectX11-net40\SharpDX.dll</HintPath>
     </Reference>
+    <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
@@ -68,6 +73,7 @@
     <Reference Include="MonoGame.Framework">
       <HintPath>packages\MonoGame.Binaries.3.2.0\build\net40\MonoGame.Framework.dll</HintPath>
     </Reference>
+    <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
@@ -76,6 +82,7 @@
     <Reference Include="OpenTK">
       <HintPath>packages\OpenTK.1.1.1589.5942\lib\NET40\OpenTK.dll</HintPath>
     </Reference>
+    <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
@@ -84,6 +91,7 @@
     <Reference Include="OpenTK">
       <HintPath>packages\OpenTK.1.1.1589.5942\lib\NET40\OpenTK.dll</HintPath>
     </Reference>
+    <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
@@ -236,6 +244,7 @@
     <Compile Include="Niflib\Triangle.cs" />
     <Compile Include="Niflib\VecKey.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TriangleWalker.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
