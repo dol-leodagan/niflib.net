@@ -61,7 +61,7 @@ namespace Niflib.Extensions
 		/// </summary>
 		/// <param name="file">NiFile to parse</param>
 		/// <param name="categories">NiObject Name from where to Browse for Triangles Shape</param>
-		/// <returns>Vector3 Array, each 3 indices are a new Triangle</returns>
+		/// <returns>Dictionary of Category Indexed Triangle Collection</returns>
 		public static IDictionary<string, TriangleCollection> GetTriangleFromCategories(this NiFile file, params string[] categories)
 		{
 			if (file == null)
@@ -266,7 +266,7 @@ namespace Niflib.Extensions
 		/// Browse Triangle Collection as Enumerable of T
 		/// T is instanciated from given delegate using 3 Vector3
 		/// </summary>
-		/// <param name="tris">TriangleCollection</param>
+		/// <param name="tris">TriangleCollection to flatten</param>
 		/// <param name="constructor">Delegate return object from three Vector3</param>
 		/// <returns>Triangle Enumerable</returns>
 		public static IEnumerable<T> AsEnumerable<T>(this TriangleCollection tris, Func<Vector3, Vector3, Vector3, T> constructor)
@@ -277,8 +277,8 @@ namespace Niflib.Extensions
 		/// <summary>
 		/// Enumerate vertex normals for each triangle vertices
 		/// </summary>
-		/// <param name="tris"></param>
-		/// <param name="norms"></param>
+		/// <param name="tris">Triangle Collection for Normal Mapping</param>
+		/// <param name="norms">Normalized Vector3 array for each Triangle Indexed vertex</param>
 		/// <returns></returns>
 		public static IEnumerable<Vector3> PerVertexNormalEnumerable(this TriangleCollection tris, Vector3[] norms)
 		{
@@ -291,8 +291,8 @@ namespace Niflib.Extensions
 		/// <summary>
 		/// Compute Normal Light Vector from Triangle Collection
 		/// </summary>
-		/// <param name="tris"></param>
-		/// <returns></returns>
+		/// <param name="tris">Triangle Collection Object from which to Compute normals</param>
+		/// <returns>Normalized Vector3 array for each Triangle's vertex index</returns>
 		public static Vector3[] ComputeNormalLighting(this TriangleCollection tris)
 		{
 			return Enumerable.Range(0, tris.Vertices.Length).Select(ind =>
