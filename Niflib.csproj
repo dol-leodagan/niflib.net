@@ -62,7 +62,7 @@
   </PropertyGroup>
   <ItemGroup Condition=" '$(Configuration)' == 'SharpDX' ">
     <Reference Include="SharpDX">
-      <HintPath>packages\SharpDX.2.6.3\Bin\DirectX11-net40\SharpDX.dll</HintPath>
+      <HintPath>$(SolutionDir)packages\SharpDX.2.6.3\Bin\DirectX11-net40\SharpDX.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -71,7 +71,7 @@
   </ItemGroup>
   <ItemGroup Condition=" '$(Configuration)' == 'MonoGame' ">
     <Reference Include="MonoGame.Framework">
-      <HintPath>packages\MonoGame.Binaries.3.2.0\build\net40\MonoGame.Framework.dll</HintPath>
+      <HintPath>$(SolutionDir)packages\MonoGame.Binaries.3.2.0\build\net40\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -80,7 +80,7 @@
   </ItemGroup>
   <ItemGroup Condition=" '$(Configuration)' == 'OpenTK' ">
     <Reference Include="OpenTK">
-      <HintPath>packages\OpenTK.1.1.1589.5942\lib\NET40\OpenTK.dll</HintPath>
+      <HintPath>$(SolutionDir)packages\OpenTK.1.1.1589.5942\lib\NET40\OpenTK.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -89,7 +89,7 @@
   </ItemGroup>
   <ItemGroup Condition=" '$(Configuration)' == 'Debug' ">
     <Reference Include="OpenTK">
-      <HintPath>packages\OpenTK.1.1.1589.5942\lib\NET40\OpenTK.dll</HintPath>
+      <HintPath>$(SolutionDir)packages\OpenTK.1.1.1589.5942\lib\NET40\OpenTK.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
