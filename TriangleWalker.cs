@@ -312,5 +312,39 @@ namespace Niflib.Extensions
 			                                                                   a => { a.Normalize(); return a; })
 			                                                       ).ToArray();
 		}
+		
+		/// <summary>
+		/// Concat Two triangle Collections with indexed Vertices into One Collection
+		/// </summary>
+		/// <param name="collection"></param>
+		/// <param name="other"></param>
+		/// <returns></returns>
+		public static TriangleCollection Concat(this TriangleCollection collection, TriangleCollection other)
+		{
+			TriangleCollection result;
+			Concat(ref collection, ref other, out result);
+			return result;
+		}
+		
+		/// <summary>
+		/// Concat Two triangle Collections with indexed Vertices into One Collection
+		/// </summary>
+		/// <param name="collection"></param>
+		/// <param name="other"></param>
+		/// <param name="result"></param>
+		public static void Concat(ref TriangleCollection collection, ref TriangleCollection other, out TriangleCollection result)
+		{
+			var collectionVerticesCount = collection.Vertices.Length;
+			var otherIndices = other.Indices.Select(tri => new TriangleIndex(){
+			                                        	A = tri.A+collectionVerticesCount,
+			                                        	B = tri.B+collectionVerticesCount,
+			                                        	C = tri.C+collectionVerticesCount,
+			                                        });
+			result = new TriangleCollection()
+			{
+				Vertices = collection.Vertices.Concat(other.Vertices).ToArray(),
+				Indices = collection.Indices.Concat(otherIndices).ToArray(),
+			};
+		}
 	}
 }
