@@ -20,6 +20,7 @@
 namespace Niflib.Extensions
 {
 	using System;
+	using System.Text.RegularExpressions;
 	using System.Linq;
 	using System.Collections.Generic;
 	using Niflib;
@@ -60,7 +61,7 @@ namespace Niflib.Extensions
 		/// Retrieve Triangles Shapes in a Nif File following given Category nodes
 		/// </summary>
 		/// <param name="file">NiFile to parse</param>
-		/// <param name="categories">NiObject Name from where to Browse for Triangles Shape</param>
+		/// <param name="categories">NiObject Name (RegExp) from where to Browse for Triangles Shape</param>
 		/// <returns>Dictionary of Category Indexed Triangle Collection</returns>
 		public static IDictionary<string, TriangleCollection> GetTriangleFromCategories(this NiFile file, params string[] categories)
 		{
@@ -77,24 +78,28 @@ namespace Niflib.Extensions
 			{
 				foreach(var category in categories)
 				{
-					var startingNode = root.FindNodeWithCategory(category);
 					// Retrieve Triangle Collection From Category
-					var tris = startingNode.GetTrianglesFromNode();
-					TriangleCollection existing;
-					
-					// Add or Concat
-					if (result.TryGetValue(category, out existing))
+					var startingNodes = root.FindNodeWithCategory(category);
+					foreach (var node in startingNodes)
 					{
-						var offset = existing.Vertices.Length;
-						existing.Vertices = existing.Vertices.Concat(tris.Vertices).ToArray();
-						existing.Indices = existing.Indices.Concat(tris.Indices.Select(tri => { tri.A += offset; tri.B += offset; tri.C += offset; return tri; })).ToArray();
-					}
-					else
-					{
-						result.Add(category, tris);
+						var nodeTris = node.GetTrianglesFromNode();
+						var nodeName = node.Name.Value;
+						// Add or Concat
+						TriangleCollection existing;
+						if (result.TryGetValue(nodeName, out existing))
+						{
+							TriangleCollection triConcat;
+							Concat(ref existing, ref nodeTris, out triConcat);
+							result[nodeName] = triConcat;
+						}
+						else
+						{
+							result.Add(nodeName, nodeTris);
+						}
 					}
 				}
 			}
+			
 			return result;
 		}
 		
@@ -240,16 +245,18 @@ namespace Niflib.Extensions
 		/// <param name="node"></param>
 		/// <param name="category"></param>
 		/// <returns></returns>
-		public static NiNode FindNodeWithCategory(this NiNode node, string category)
+		public static NiNode[] FindNodeWithCategory(this NiNode node, string category)
 		{
+			var result = new List<NiNode>();
 			var stack = new Stack<NiNode>();
 			stack.Push(node);
 			do
 			{
 				var current = stack.Pop();
-				if (current.Name.Value.Equals(category, StringComparison.OrdinalIgnoreCase))
+				if (Regex.IsMatch(current.Name.Value, category, RegexOptions.IgnoreCase))
 				{
-					return current;
+					// Add Result and Don't Push Children !
+					result.Add(current);
 				}
 				else if (current.Children != null)
 				{
@@ -259,7 +266,7 @@ namespace Niflib.Extensions
 			}
 			while (stack.Count > 0);
 			
-			return null;
+			return result.ToArray();
 		}
 		
 		/// <summary>
@@ -311,6 +318,40 @@ namespace Niflib.Extensions
 			                                                                   },
 			                                                                   a => { a.Normalize(); return a; })
 			                                                       ).ToArray();
+		}
+		
+		/// <summary>
+		/// Concat Two triangle Collections with indexed Vertices into One Collection
+		/// </summary>
+		/// <param name="collection"></param>
+		/// <param name="other"></param>
+		/// <returns></returns>
+		public static TriangleCollection Concat(this TriangleCollection collection, TriangleCollection other)
+		{
+			TriangleCollection result;
+			Concat(ref collection, ref other, out result);
+			return result;
+		}
+		
+		/// <summary>
+		/// Concat Two triangle Collections with indexed Vertices into One Collection
+		/// </summary>
+		/// <param name="collection"></param>
+		/// <param name="other"></param>
+		/// <param name="result"></param>
+		public static void Concat(ref TriangleCollection collection, ref TriangleCollection other, out TriangleCollection result)
+		{
+			var collectionVerticesCount = collection.Vertices.Length;
+			var otherIndices = other.Indices.Select(tri => new TriangleIndex {
+			                                        	A = tri.A+collectionVerticesCount,
+			                                        	B = tri.B+collectionVerticesCount,
+			                                        	C = tri.C+collectionVerticesCount,
+			                                        });
+			result = new TriangleCollection()
+			{
+				Vertices = collection.Vertices.Concat(other.Vertices).ToArray(),
+				Indices = collection.Indices.Concat(otherIndices).ToArray(),
+			};
 		}
 	}
 }
