@@ -216,9 +216,16 @@ namespace Niflib
         /// </summary>
         private void FixRefs()
 		{
+        	// Fix Object Refs
 			foreach (NiObject current in this.ObjectsByRef.Values)
 			{
 				this.FixRefs(current);
+			}
+			
+			// Fix Footer Refs
+			foreach (var niRef in Footer.RootNodes)
+			{
+				niRef.SetRef(this);
 			}
 		}
 

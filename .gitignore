@@ -197,3 +197,4 @@ FakesAssemblies/
 /packages
 /StyleCopViolations.xml
 /Niflib.sln.GhostDoc.xml
+/ProfilingSessions/*.sdps

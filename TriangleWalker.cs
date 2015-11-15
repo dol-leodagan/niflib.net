@@ -38,9 +38,9 @@ namespace Niflib.Extensions
 	/// </summary>
 	public struct TriangleIndex
 	{
-		public int A;
-		public int B;
-		public int C;
+		public uint A;
+		public uint B;
+		public uint C;
 	}
 	
 	/// <summary>
@@ -83,6 +83,8 @@ namespace Niflib.Extensions
 					foreach (var node in startingNodes)
 					{
 						var nodeTris = node.GetTrianglesFromNode();
+						bool wrong = nodeTris.Indices.Any(tri => tri.A >= nodeTris.Vertices.Length || tri.B >= nodeTris.Vertices.Length || tri.C >= nodeTris.Vertices.Length);
+						
 						var nodeName = node.Name.Value;
 						// Add or Concat
 						TriangleCollection existing;
@@ -113,9 +115,7 @@ namespace Niflib.Extensions
 		{
 			var stack = new Stack<NiNode>();
 			stack.Push(node);
-			IEnumerable<Vector3> vertices = new Vector3[0];
-			IEnumerable<TriangleIndex> indices = new TriangleIndex[0];
-			int vertOffst = 0;
+			TriangleCollection result = new TriangleCollection { Vertices = new Vector3[0], Indices = new TriangleIndex[0], };
 			do
 			{
 				var current = stack.Pop();
@@ -132,9 +132,10 @@ namespace Niflib.Extensions
 				foreach (var geom in current.Children.Where(rf => rf.IsValid()).Select(rf => rf.Object).OfType<NiTriBasedGeometry>())
 				{
 					var triangles = geom.GetTrianglesFromGeometry();
-					vertices = vertices.Concat(triangles.Vertices);
-					indices = indices.Concat(triangles.Indices.Select(tri => { tri.A += vertOffst; tri.B += vertOffst; tri.C += vertOffst; return tri; }));
-					vertOffst += triangles.Vertices.Length;
+					
+					TriangleCollection intermediate;
+					Concat(ref result, ref triangles, out intermediate);
+					result = intermediate;
 				}
 
 				if (current.Children != null)
@@ -145,7 +146,7 @@ namespace Niflib.Extensions
 			}
 			while (stack.Count > 0);
 			
-			return new TriangleCollection { Vertices = vertices.ToArray(), Indices = indices.ToArray() };
+			return result;
 		}
 		
 		/// <summary>
@@ -200,7 +201,7 @@ namespace Niflib.Extensions
 	                Matrix transformationMatrix = geom.GetWorldMatrixFromNode();
 	                return new TriangleCollection
 	                {
-	                	Vertices = shapeData.Vertices.Select(vert => { Vector3 trans; Vector3.Transform(ref vert, ref transformationMatrix, out trans); return trans; }).ToArray(),
+	                	Vertices = stripsData.Vertices.Select(vert => { Vector3 trans; Vector3.Transform(ref vert, ref transformationMatrix, out trans); return trans; }).ToArray(),
 	                	Indices = indices.SelectMany(tri => tri).ToArray()
 	                };
 	            }
@@ -221,19 +222,44 @@ namespace Niflib.Extensions
 			while (current != null)
 			{
 				// Append Transformation To Matrix
-				worldMatrix *= current.Rotation;
+				Matrix intermediate;
+				
 				#if SharpDX
-				worldMatrix *= Matrix.Scaling(current.Scale);
+				Matrix.Multiply(ref worldMatrix, ref current.Rotation, out intermediate);
+				worldMatrix = intermediate;
+				
+				var scale = Matrix.Scaling(current.Scale);
+				Matrix.Multiply(ref worldMatrix, ref scale, out intermediate);
+				worldMatrix = intermediate;
+				
+				var translate = Matrix.Translation(current.Translation.X, current.Translation.Y, current.Translation.Z);
+				Matrix.Multiply(ref worldMatrix, ref translate, out intermediate);
+				worldMatrix = intermediate;
+				#elif MonoGame
+				Matrix.Multiply(ref worldMatrix, ref current.Rotation, out intermediate);
+				worldMatrix = intermediate;
+				
+				var scale = Matrix.CreateScale(current.Scale);
+				Matrix.Multiply(ref worldMatrix, ref scale, out intermediate);
+				worldMatrix = intermediate;
+				
+				var translate = Matrix.CreateTranslation(current.Translation.X, current.Translation.Y, current.Translation.Z);
+				Matrix.Multiply(ref worldMatrix, ref translate, out intermediate);
+				worldMatrix = intermediate;
 				#else
-				worldMatrix *= Matrix.CreateScale(current.Scale);
-				#endif
-				#if SharpDX
-				worldMatrix *= Matrix.Translation(current.Translation.X, current.Translation.Y, current.Translation.Z);
-				#else
-				worldMatrix *= Matrix.CreateTranslation(current.Translation.X, current.Translation.Y, current.Translation.Z);
+				Matrix.Mult(ref worldMatrix, ref current.Rotation, out intermediate);
+				worldMatrix = intermediate;
+				
+				var scale = Matrix.CreateScale(current.Scale);
+				Matrix.Mult(ref worldMatrix, ref scale, out intermediate);
+				worldMatrix = intermediate;
+				
+				var translate = Matrix.CreateTranslation(current.Translation.X, current.Translation.Y, current.Translation.Z);
+				Matrix.Mult(ref worldMatrix, ref translate, out intermediate);
+				worldMatrix = intermediate;
 				#endif
 				
-				current = leaf.Parent;
+				current = current.Parent;
 			}
 			
 			return worldMatrix;
@@ -299,25 +325,29 @@ namespace Niflib.Extensions
 		/// Compute Normal Light Vector from Triangle Collection
 		/// </summary>
 		/// <param name="tris">Triangle Collection Object from which to Compute normals</param>
-		/// <returns>Normalized Vector3 array for each Triangle's vertex index</returns>
+		/// <returns>Normalized Vector3 Light Normal array for each Triangle's vertex index</returns>
 		public static Vector3[] ComputeNormalLighting(this TriangleCollection tris)
 		{
-			return Enumerable.Range(0, tris.Vertices.Length).Select(ind =>
-			                                                        tris.Indices.Where(tri => tri.A == ind || tri.B == ind || tri.C == ind)
-			                                                        .Aggregate(new Vector3(0, 0, 0),
-			                                                                   (v, t) => {
-			                                                                   	Vector3 AB;
-			                                                                   	Vector3 AC;
-			                                                                   	Vector3.Subtract(ref tris.Vertices[t.B], ref tris.Vertices[t.A], out AB);
-			                                                                   	Vector3.Subtract(ref tris.Vertices[t.C], ref tris.Vertices[t.A], out AC);
-			                                                                   	Vector3 cross;
-			                                                                   	Vector3.Cross(ref AB, ref AC, out cross);
-			                                                                   	Vector3 result;
-			                                                                   	Vector3.Add(ref v, ref cross, out result);
-			                                                                   	return result;
-			                                                                   },
-			                                                                   a => { a.Normalize(); return a; })
-			                                                       ).ToArray();
+			var lookup = tris.Indices.Select((tri, i) => new []{ new KeyValuePair<uint, int>(tri.A, i), new KeyValuePair<uint, int>(tri.B, i), new KeyValuePair<uint, int>(tri.C, i), })
+				.SelectMany(tr => tr).ToLookup(kv => kv.Key, kv => kv.Value);
+			return tris.Vertices.Select((vert, ind) =>
+			                            lookup[(uint)ind].Select(i => tris.Indices[i])
+			                            .Aggregate(new Vector3(0, 0, 0),
+			                                       (v, t) => {
+			                                       	Vector3 AB;
+			                                       	Vector3 AC;
+			                                       	Vector3.Subtract(ref tris.Vertices[t.B], ref tris.Vertices[t.A], out AB);
+			                                       	Vector3.Subtract(ref tris.Vertices[t.C], ref tris.Vertices[t.A], out AC);
+			                                       	Vector3 cross;
+			                                       	Vector3.Cross(ref AB, ref AC, out cross);
+			                                       	Vector3 crossnorms;
+			                                       	Vector3.Normalize(ref cross, out crossnorms);
+			                                       	Vector3 result;
+			                                       	Vector3.Add(ref v, ref crossnorms, out result);
+			                                       	return result;
+			                                       }
+			                                       , a => { Vector3 n; Vector3.Normalize(ref a, out n); return n; })
+			                           ).ToArray();
 		}
 		
 		/// <summary>
@@ -341,16 +371,18 @@ namespace Niflib.Extensions
 		/// <param name="result"></param>
 		public static void Concat(ref TriangleCollection collection, ref TriangleCollection other, out TriangleCollection result)
 		{
-			var collectionVerticesCount = collection.Vertices.Length;
+			var collectionVerticesCount = (uint)collection.Vertices.Length;
 			var otherIndices = other.Indices.Select(tri => new TriangleIndex {
 			                                        	A = tri.A+collectionVerticesCount,
 			                                        	B = tri.B+collectionVerticesCount,
 			                                        	C = tri.C+collectionVerticesCount,
 			                                        });
+			var vertices = collection.Vertices.Concat(other.Vertices).ToArray();
+			var indices = collection.Indices.Concat(otherIndices).ToArray();
 			result = new TriangleCollection()
 			{
-				Vertices = collection.Vertices.Concat(other.Vertices).ToArray(),
-				Indices = collection.Indices.Concat(otherIndices).ToArray(),
+				Vertices = vertices,
+				Indices = indices,
 			};
 		}
 	}
