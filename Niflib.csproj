@@ -198,6 +198,7 @@
     <Compile Include="Niflib\NiRotatingParticles.cs" />
     <Compile Include="Niflib\NiRotatingParticlesData.cs" />
     <Compile Include="Niflib\NiScreenLODData.cs" />
+    <Compile Include="Niflib\NiShadeProperty.cs" />
     <Compile Include="Niflib\NiSingleInterpController.cs" />
     <Compile Include="Niflib\NiSkinData.cs" />
     <Compile Include="Niflib\NiSkinInstance.cs" />
