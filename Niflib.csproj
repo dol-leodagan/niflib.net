@@ -244,6 +244,7 @@
     <Compile Include="Niflib\TexDesc.cs" />
     <Compile Include="Niflib\Triangle.cs" />
     <Compile Include="Niflib\VecKey.cs" />
+    <Compile Include="NodeWalker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TriangleWalker.cs" />
   </ItemGroup>

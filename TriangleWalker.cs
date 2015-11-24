@@ -116,35 +116,20 @@ namespace Niflib.Extensions
 			var stack = new Stack<NiNode>();
 			stack.Push(node);
 			TriangleCollection result = new TriangleCollection { Vertices = new Vector3[0], Indices = new TriangleIndex[0], };
-			do
+			
+			foreach (var trinode in node.GetTriBasedNode())
 			{
-				var current = stack.Pop();
-				
 				// Filter drawable nodes
-				if (onlyDrawable)
-				{
-					var niAV = current as NiAVObject;
-					if (niAV != null && (niAV.Flags & 1) == 1)
-						continue;
-				}
+				if (onlyDrawable && trinode.IsInvisible())
+					continue;
 				
-				// Look for Geometry
-				foreach (var geom in current.Children.Where(rf => rf.IsValid()).Select(rf => rf.Object).OfType<NiTriBasedGeometry>())
-				{
-					var triangles = geom.GetTrianglesFromGeometry();
+				var triangles = trinode.GetTrianglesFromGeometry();
 					
-					TriangleCollection intermediate;
-					Concat(ref result, ref triangles, out intermediate);
-					result = intermediate;
-				}
+				TriangleCollection intermediate;
+				Concat(ref result, ref triangles, out intermediate);
+				result = intermediate;
 
-				if (current.Children != null)
-				{
-					foreach(var child in current.Children.Where(rf => rf.IsValid()).Select(rf => rf.Object).OfType<NiNode>())
-						stack.Push(child);
-				}
 			}
-			while (stack.Count > 0);
 			
 			return result;
 		}
@@ -158,55 +143,67 @@ namespace Niflib.Extensions
 		{
 			if (geom.Data != null && geom.Data.IsValid() && geom.Data.Object != null)
 			{
+				Matrix transformation = geom.GetWorldMatrixFromNode();
 				// Shape Parsing
 				var shapeData = geom.Data.Object as NiTriShapeData;
 				if (shapeData != null && shapeData.HasVertices && shapeData.NumVertices >= 3)
 				{
-	                Matrix transformationMatrix = geom.GetWorldMatrixFromNode();
-	                return new TriangleCollection
-	                {
-	                	Vertices = shapeData.Vertices.Select(vert => { Vector3 trans; Vector3.Transform(ref vert, ref transformationMatrix, out trans); return trans; }).ToArray(),
-	                	Indices = shapeData.Triangles.Select(tri => new TriangleIndex { A = tri.X, B = tri.Y, C = tri.Z }).ToArray()
-	                };
+					return shapeData.GetTrianglesFromGeometryShape(transformation);
 				}
 				
 				// Strips Parsing
 				var stripsData = geom.Data.Object as NiTriStripsData;
 	            if (stripsData != null && stripsData.HasVertices && stripsData.NumVertices >= 3)
 	            {
-					var stripsLength = stripsData.Points.Length;
-		            List<Triangle> triangles = new List<Triangle>();
-		            var indices = stripsData.Points.Select(strip =>
-		                                                   {
-		                                                   	var points = strip;
-		                                                   	var pointsLength = points.Length;
-		                                                   	if (pointsLength > 2)
-		                                                   	{
-		                                                   		var tris = new List<TriangleIndex>();
-		                                                   		var a = points[0];
-		                                                   		var b = points[1];
-		                                                   		for (int pts = 2 ; pts < pointsLength ; pts++)
-		                                                   		{
-		                                                   			var c = points[pts];
-		                                                   			if (a != b && a != c && b != c)
-		                                                   				tris.Add(pts % 2 == 0 ? new TriangleIndex{ A = a, B = b, C = c } : new TriangleIndex{ A = a, B = c, C = b });
-		                                                   			
-		                                                   			a = b;
-		                                                   			b = c;
-		                                                   		}
-		                                                   		return tris.ToArray();
-		                                                   	}
-		                                                   	return new TriangleIndex[0];
-		                                                   });
-	                Matrix transformationMatrix = geom.GetWorldMatrixFromNode();
-	                return new TriangleCollection
-	                {
-	                	Vertices = stripsData.Vertices.Select(vert => { Vector3 trans; Vector3.Transform(ref vert, ref transformationMatrix, out trans); return trans; }).ToArray(),
-	                	Indices = indices.SelectMany(tri => tri).ToArray()
-	                };
+	            	return stripsData.GetTrianglesFromGeometryStrips(transformation);
 	            }
 			}
 			return new TriangleCollection { Vertices = new Vector3[0], Indices = new TriangleIndex[0] };
+		}
+		
+		public static TriangleCollection GetTrianglesFromGeometryShape(this NiTriShapeData shapeData, Matrix transformationMatrix)
+		{
+            return new TriangleCollection
+            {
+            	Vertices = shapeData.Vertices.Select(vert => { Vector3 trans; Vector3.Transform(ref vert, ref transformationMatrix, out trans); return trans; }).ToArray(),
+            	Indices = shapeData.Triangles.Select(tri => new TriangleIndex { A = tri.X, B = tri.Y, C = tri.Z, }).ToArray()
+            };
+		}
+		
+		public static TriangleCollection GetTrianglesFromGeometryStrips(this NiTriStripsData stripsData, Matrix transformationMatrix)
+		{
+			var stripsLength = stripsData.Points.Length;
+            var indices = stripsData.Points.Select(strip =>
+                                                   {
+                                                   	var points = strip;
+                                                   	var pointsLength = points.Length;
+                                                   	if (pointsLength > 2)
+                                                   	{
+                                                   		var tris = new List<TriangleIndex>();
+                                                   		var a = points[0];
+                                                   		var b = a;
+                                                   		var c = points[1];
+                                                   		
+                                                   		for (int pts = 2 ; pts < pointsLength ; pts++)
+                                                   		{
+                                                   			a = b;
+                                                   			b = c;
+                                                   			c = points[pts];
+                                                   			
+                                                   			if (a != b && b != c && c != a)
+                                                   				tris.Add(pts % 2 == 0 ? new TriangleIndex{ A = a, B = b, C = c } : new TriangleIndex{ A = a, B = c, C = b });
+                                                   		}
+                                                   		
+                                                   		return tris;
+                                                   	}
+                                                   	return new List<TriangleIndex>();
+                                                   });
+			
+            return new TriangleCollection
+            {
+            	Vertices = stripsData.Vertices.Select(vert => { Vector3 trans; Vector3.Transform(ref vert, ref transformationMatrix, out trans); return trans; }).ToArray(),
+            	Indices = indices.SelectMany(tri => tri).ToArray()
+            };
 		}
 		
 		/// <summary>

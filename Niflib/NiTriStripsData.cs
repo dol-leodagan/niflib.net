@@ -53,13 +53,18 @@ namespace Niflib
 			{
 				this.HasPoints = reader.ReadBoolean(Version);
 			}
+			else
+			{
+				this.HasPoints = array.Length > 0;
+			}
+			
 			if (base.Version < eNifVersion.VER_10_0_1_3 || this.HasPoints)
 			{
 				this.Points = new ushort[array.Length][];
 				for (int j = 0; j < array.Length; j++)
 				{
 					this.Points[j] = new ushort[(int)array[j]];
-					for (ushort num = 0; num < array[j]; num += 1)
+					for (ushort num = 0; num < array[j]; num++)
 					{
 						this.Points[j][(int)num] = reader.ReadUInt16();
 					}
