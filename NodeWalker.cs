@@ -47,7 +47,7 @@ namespace Niflib.Extensions
 		/// <returns></returns>
 		public static IEnumerable<NiAVObject> GetChildren(this NiNode node)
 		{
-			return node.Children.Where(rf => rf.IsValid()).Select(rf => rf.Object).OfType<NiNode>();
+			return node.Children.Where(rf => rf.IsValid() && rf.Object != null).Select(rf => rf.Object);
 		}
 		
 		/// <summary>
@@ -60,7 +60,26 @@ namespace Niflib.Extensions
 		{
 			var lods = node.GetChildren().OfType<NiNode>().ToArray();
 			
-			foreach (var match in node.LODLevels.Select((l, i) => new { Ind = i, Lod = l }).Where(o => dist >= o.Lod.NearExtent && dist < o.Lod.FarExtent  && o.Ind < lods.Length))
+			var lodlevels = node.LODLevels;
+			if (lodlevels == null && node.LODLevelData.IsValid() && node.LODLevelData.Object != null)
+			{
+				var lodData = node.LODLevelData.Object as NiRangeLODData;
+				if (lodData != null)
+					lodlevels = lodData.LODLevels;
+			}
+			
+			if (lodlevels == null)
+			{
+				// Default to first LOD Level for other LOD mechanisms
+				var result = lods.FirstOrDefault();
+				if (result != null)
+					yield return result;
+				yield break;
+			}
+			
+			foreach (var match in lodlevels
+			         .Select((l, i) => new { Ind = i, Lod = l })
+			         .Where(o => dist >= o.Lod.NearExtent && dist < o.Lod.FarExtent  && o.Ind < lods.Length))
 				yield return lods.ElementAt(match.Ind);
 			yield break;
 		}
