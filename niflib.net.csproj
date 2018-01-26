@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net40</TargetFrameworks>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE;DEBUG;OpenTK</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='OpenTK|AnyCPU'">
+    <DefineConstants>OpenTK</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='SharpDX|AnyCPU'">
+    <DefineConstants>SharpDX</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MonoGame|AnyCPU'">
+    <DefineConstants>MonoGame</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PackageReference Include="OpenTK" Version="1.1.1160.61462" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)|$(Platform)'=='OpenTK|AnyCPU'">
+    <PackageReference Include="OpenTK" Version="1.1.1160.61462" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)|$(Platform)'=='SharpDX|AnyCPU' And '$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="SharpDX" Version="4.0.1" />
+    <PackageReference Include="SharpDX.Mathematics" Version="4.0.1" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)|$(Platform)'=='SharpDX|AnyCPU' And '$(TargetFramework)' == 'net40'">
+    <PackageReference Include="SharpDX" Version="3.0.0" />
+    <PackageReference Include="SharpDX.Mathematics" Version="3.0.0" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)|$(Platform)'=='MonoGame|AnyCPU'">
+    <PackageReference Include="MonoGame.Binaries" Version="3.2.0" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+    <PackageReference Include="Microsoft.CSharp" Version="4.4.1" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">
+    <PackageReference Include="Microsoft.CSharp" />
+  </ItemGroup>
+</Project>

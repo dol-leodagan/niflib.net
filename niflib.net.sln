@@ -1,0 +1,28 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26124.0
+MinimumVisualStudioVersion = 15.0.26124.0
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "niflib.net", "niflib.net.csproj", "{E423A95C-6A2E-4608-8CC0-927625AD5D06}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		OpenTK|Any CPU = OpenTK|Any CPU
+		SharpDX|Any CPU = SharpDX|Any CPU
+		MonoGame|Any CPU = MonoGame|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E423A95C-6A2E-4608-8CC0-927625AD5D06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E423A95C-6A2E-4608-8CC0-927625AD5D06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E423A95C-6A2E-4608-8CC0-927625AD5D06}.OpenTK|Any CPU.ActiveCfg = OpenTK|Any CPU
+		{E423A95C-6A2E-4608-8CC0-927625AD5D06}.OpenTK|Any CPU.Build.0 = OpenTK|Any CPU
+		{E423A95C-6A2E-4608-8CC0-927625AD5D06}.SharpDX|Any CPU.ActiveCfg = SharpDX|Any CPU
+		{E423A95C-6A2E-4608-8CC0-927625AD5D06}.SharpDX|Any CPU.Build.0 = SharpDX|Any CPU
+		{E423A95C-6A2E-4608-8CC0-927625AD5D06}.MonoGame|Any CPU.ActiveCfg = MonoGame|Any CPU
+		{E423A95C-6A2E-4608-8CC0-927625AD5D06}.MonoGame|Any CPU.Build.0 = MonoGame|Any CPU
+	EndGlobalSection
+EndGlobal
